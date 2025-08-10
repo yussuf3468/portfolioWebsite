@@ -75,7 +75,7 @@ const Header: React.FC = () => {
               onClick={() => scrollToSection("contact")}
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
             >
-              Contact
+              Let's Work Together
             </button>
           </div>
 

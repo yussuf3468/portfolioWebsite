@@ -18,17 +18,17 @@ const Portfolio: React.FC = () => {
       githubUrl: "https://github.com/YussufMuse/odyssey-travel",
     },
     {
-  id: 2,
-  title: "Jenkinson SeaLife Website",
-  category: "college",
-  description:
-    "Website for Jenkinson SeaLife, a marine company based in Singapore, created as a college project showcasing responsive design and marine-themed layouts.",
-  image:
-    "https://images.pexels.com/photos/2765872/pexels-photo-2765872.jpeg?auto=compress&cs=tinysrgb&w=800", // Sea image from Pexels
-  technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-  liveUrl: "https://jenkinson-sealife.vercel.app",
-  githubUrl: "#"
-},
+      id: 2,
+      title: "Jenkinson SeaLife Website",
+      category: "college",
+      description:
+        "Website for Jenkinson SeaLife, a marine company based in Singapore, created as a college project showcasing responsive design and marine-themed layouts.",
+      image:
+        "https://images.pexels.com/photos/2765872/pexels-photo-2765872.jpeg?auto=compress&cs=tinysrgb&w=800", // Sea image from Pexels
+      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+      liveUrl: "https://jenkinson-sealife.vercel.app",
+      githubUrl: "#",
+    },
 
     {
       id: 3,
@@ -196,20 +196,26 @@ const Portfolio: React.FC = () => {
             ))}
           </div>
 
-          <div className="mt-16 text-center">
-            <p className="text-lg text-gray-600 mb-8">
-              Want to see more projects or discuss a custom solution?
+          {/* Lenzro link - Ready to Transform Your Business? */}
+          <div className="mt-20 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              Ready to <span className="text-yellow-500">Transform</span> Your
+              Business?
+            </h3>
+            <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
+              Visit <span className="font-semibold">Lenzro</span> — our startup
+              dedicated to helping businesses grow with creative strategies,
+              modern technology, and data-driven solutions.
             </p>
-            <button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105"
+            <a
+              href="https://lenzro.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-semibold rounded-full shadow-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300"
             >
-              Let's Talk
-            </button>
+              Explore Lenzro
+              <ExternalLink className="ml-2 w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

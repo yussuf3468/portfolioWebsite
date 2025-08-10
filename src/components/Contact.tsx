@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Linkedin, Github, Twitter } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  Linkedin,
+  Github,
+  Twitter,
+  Calendar,
+} from "lucide-react";
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    subject: '',
-    message: '',
-    projectType: 'consultation'
+    name: "",
+    email: "",
+    company: "",
+    subject: "",
+    message: "",
+    projectType: "consultation",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -16,10 +26,10 @@ const Contact: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://formspree.io/f/xqalwezq', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await fetch("https://formspree.io/f/xqalwezq", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -27,26 +37,30 @@ const Contact: React.FC = () => {
         setTimeout(() => setIsSubmitted(false), 3000);
 
         setFormData({
-          name: '',
-          email: '',
-          company: '',
-          subject: '',
-          message: '',
-          projectType: 'consultation'
+          name: "",
+          email: "",
+          company: "",
+          subject: "",
+          message: "",
+          projectType: "consultation",
         });
       } else {
-        alert('Something went wrong. Please try again.');
+        alert("Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      alert('Error sending message.');
+      alert("Error sending message.");
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -60,17 +74,21 @@ const Contact: React.FC = () => {
               Let's <span className="text-yellow-500">Connect</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your business with premium technology solutions? 
-              Let's discuss your project and explore how we can work together.
+              Ready to transform your business with premium technology
+              solutions? Let's discuss your project and explore how we can work
+              together.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Get in Touch
+              </h3>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                I'm always excited to discuss new opportunities and challenges...
+                I'm always excited to discuss new opportunities and
+                challenges...
               </p>
 
               <div className="space-y-6">
@@ -80,7 +98,10 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Email</div>
-                    <a href="mailto:yussuf@lenzro.com" className="text-gray-600 hover:text-yellow-600 transition-colors">
+                    <a
+                      href="mailto:yussuf@lenzro.com"
+                      className="text-gray-600 hover:text-yellow-600 transition-colors"
+                    >
                       yussuf@lenzro.com
                     </a>
                   </div>
@@ -92,7 +113,10 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Phone</div>
-                    <a href="tel:+254769484646" className="text-gray-600 hover:text-cyan-600 transition-colors">
+                    <a
+                      href="tel:+254769484646"
+                      className="text-gray-600 hover:text-cyan-600 transition-colors"
+                    >
                       +254 769 484646
                     </a>
                   </div>
@@ -104,19 +128,45 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900">Location</div>
-                    <span className="text-gray-600">Available for remote & on-site projects</span>
+                    <span className="text-gray-600">
+                      Available for remote & on-site projects
+                    </span>
                   </div>
+                </div>
+                {/* Schedule a Call Button */}
+                <div className="pt-6">
+                  <a
+                    href="https://calendly.com/yussufh080/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Schedule a Call
+                  </a>
                 </div>
               </div>
 
               {/* Social Links */}
               <div className="pt-8 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-4">Connect on Social</h4>
+                <h4 className="font-semibold text-gray-900 mb-4">
+                  Connect on Social
+                </h4>
                 <div className="flex space-x-4">
-                  <a href="https://github.com/yussuf3468" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 group">
+                  <a
+                    href="https://github.com/yussuf3468"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 group"
+                  >
                     <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </a>
-                  <a href="https://twitter.com/yussuf3468" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-100 rounded-full hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 group">
+                  <a
+                    href="https://twitter.com/yussuf3468"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-100 rounded-full hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 group"
+                  >
                     <Twitter className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </a>
                 </div>
@@ -129,7 +179,10 @@ const Contact: React.FC = () => {
                 {/* Inputs */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Full Name *
                     </label>
                     <input
@@ -144,7 +197,10 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -163,7 +219,10 @@ const Contact: React.FC = () => {
                 {/* More Fields */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="company"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Company
                     </label>
                     <input
@@ -177,7 +236,10 @@ const Contact: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="projectType"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Project Type
                     </label>
                     <select
@@ -197,7 +259,10 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Subject *
                   </label>
                   <input
@@ -213,7 +278,10 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Message *
                   </label>
                   <textarea
