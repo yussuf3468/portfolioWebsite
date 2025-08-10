@@ -61,7 +61,7 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  
   return (
     <Router>
       <div className="min-h-screen bg-white text-gray-900 font-inter">

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Code } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,13 @@ const Header: React.FC = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    navigate('/');
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50); // wait for route change
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -33,16 +42,19 @@ const Header: React.FC = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Code className="w-8 h-8 text-yellow-500" />
-            <span
-              className={`text-xl font-bold ${
-                isScrolled ? "text-gray-900" : "text-white"
-              }`}
-            >
-              Yussuf
-            </span>
-          </Link>
+           <div
+      onClick={handleLogoClick}
+      className="flex items-center space-x-2 cursor-pointer"
+    >
+      <Code className="w-8 h-8 text-yellow-500" />
+      <span
+        className={`text-xl font-bold ${
+          isScrolled ? 'text-gray-900' : 'text-white'
+        }`}
+      >
+        Yussuf
+      </span>
+    </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
