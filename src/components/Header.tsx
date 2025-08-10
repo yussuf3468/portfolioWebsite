@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Code } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,8 +33,8 @@ const Header: React.FC = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <Code className={`w-8 h-8 text-yellow-500`} />
+          <Link to="/" className="flex items-center space-x-2">
+            <Code className="w-8 h-8 text-yellow-500" />
             <span
               className={`text-xl font-bold ${
                 isScrolled ? "text-gray-900" : "text-white"
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
             >
               Yussuf
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -110,12 +111,12 @@ const Header: React.FC = () => {
                   </button>
                 )
               )}
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-3 rounded-full text-center"
+              <Link
+                to="/contact"
+                className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
               >
                 Contact
-              </button>
+              </Link>
             </div>
           </div>
         )}
