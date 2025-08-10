@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Mail, Phone, MapPin, ExternalLink, Heart } from 'lucide-react';
+import { Code, Mail, Phone, MapPin, ExternalLink, Heart, Calendar } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -65,6 +65,18 @@ const Footer: React.FC = () => {
                 <div className="flex items-center space-x-3 text-gray-400">
                   <MapPin className="w-4 h-4" />
                   <span>Available for remote & on-site projects</span>
+                </div>
+                {/* Schedule a Call Button */}
+                <div className="pt-6">
+                  <a
+                    href="https://calendly.com/yussufh080/20min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Book Free Strategy Call
+                  </a>
                 </div>
               </div>
             </div>

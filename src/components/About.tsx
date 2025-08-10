@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Database, Globe, Users, Award, Lightbulb } from 'lucide-react';
+import { Code2, Database, Globe, Users, Award, Lightbulb, Calendar } from 'lucide-react';
 
 const About: React.FC = () => {
   const skills = [
@@ -43,10 +43,21 @@ const About: React.FC = () => {
                 their operations. I believe in sharing knowledge, which is why I regularly contribute 
                 to the developer community through tutorials, articles, and mentorship.
               </p>
+
+              {/* Book Free Strategy Call Button */}
+              <a
+                href="https://calendly.com/yussufh080/20min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300"
+              >
+                <Calendar className="w-5 h-5" />
+                <span>Book a Free 20-Minute Strategy Session</span>
+              </a>
+
             </div>
             
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8">
-              {/* My photo */}
               <img 
                 src="/myphoto1.jpg" 
                 alt="Yussuf Muse" 

@@ -136,13 +136,13 @@ const Contact: React.FC = () => {
                 {/* Schedule a Call Button */}
                 <div className="pt-6">
                   <a
-                    href="https://calendly.com/yussufh080/30min"
+                    href="https://calendly.com/yussufh080/20min"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-[1.02]"
                   >
                     <Calendar className="w-5 h-5 mr-2" />
-                    Schedule a Call
+                    Book Free Strategy Call
                   </a>
                 </div>
               </div>
