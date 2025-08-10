@@ -25,9 +25,9 @@ const Header: React.FC = () => {
   };
 
   const handleLogoClick = () => {
-    navigate('/');
+    navigate("/");
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 50); // wait for route change
   };
 
@@ -42,19 +42,19 @@ const Header: React.FC = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-           <div
-      onClick={handleLogoClick}
-      className="flex items-center space-x-2 cursor-pointer"
-    >
-      <Code className="w-8 h-8 text-yellow-500" />
-      <span
-        className={`text-xl font-bold ${
-          isScrolled ? 'text-gray-900' : 'text-white'
-        }`}
-      >
-        Yussuf
-      </span>
-    </div>
+          <div
+            onClick={handleLogoClick}
+            className="flex items-center space-x-2 cursor-pointer"
+          >
+            <Code className="w-8 h-8 text-yellow-500" />
+            <span
+              className={`text-xl font-bold ${
+                isScrolled ? "text-gray-900" : "text-white"
+              }`}
+            >
+              Yussuf
+            </span>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
                 to="/contact"
                 className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
               >
-                Contact
+                Let's Work Together
               </Link>
             </div>
           </div>
