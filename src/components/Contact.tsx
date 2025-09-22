@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 
 const Contact: React.FC = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,37 +24,8 @@ const Contact: React.FC = () => {
     message: "",
     projectType: "consultation",
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("https://formspree.io/f/xqalwezq", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        toast.success("Message sent successfully!");
-        setTimeout(() => setIsSubmitted(false), 3000);
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          subject: "",
-          message: "",
-          projectType: "consultation",
-        });
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Error sending message.");
-    }
-  };
+  // Show toast on successful submission (Formspree redirects to /thanks)
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -65,8 +38,50 @@ const Contact: React.FC = () => {
     });
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    try {
+      await emailjs.send(
+        "service_hxy53bk",
+        "template_61fhsgn",
+        {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          subject: formData.subject,
+          message: formData.message,
+          projectType: formData.projectType,
+        },
+        "OOnn4jog3-e9lbKUw"
+      );
+      toast.success("Message sent successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        subject: "",
+        message: "",
+        projectType: "consultation",
+      });
+    } catch (error) {
+      toast.error("Error sending message. Please try again.");
+    }
+    setIsSubmitted(false);
+  };
+
   return (
     <section id="contact" className="py-20 bg-white">
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -312,17 +327,8 @@ const Contact: React.FC = () => {
                   disabled={isSubmitted}
                   className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-8 rounded-xl font-semibold hover:shadow-xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
-                  {isSubmitted ? (
-                    <>
-                      <CheckCircle className="w-5 h-5" />
-                      <span>Message Sent!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      <span>Send Message</span>
-                    </>
-                  )}
+                  <Send className="w-5 h-5" />
+                  <span>{isSubmitted ? "Message Sent!" : "Send Message"}</span>
                 </button>
               </form>
             </div>
