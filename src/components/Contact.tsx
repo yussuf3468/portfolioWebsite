@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Mail,
   Phone,
@@ -24,18 +26,17 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
       const response = await fetch("https://formspree.io/f/xqalwezq", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
       });
 
       if (response.ok) {
         setIsSubmitted(true);
+        toast.success("Message sent successfully!");
         setTimeout(() => setIsSubmitted(false), 3000);
-
         setFormData({
           name: "",
           email: "",
@@ -45,11 +46,11 @@ const Contact: React.FC = () => {
           projectType: "consultation",
         });
       } else {
-        alert("Something went wrong. Please try again.");
+        toast.error("Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      alert("Error sending message.");
+      toast.error("Error sending message.");
     }
   };
 
@@ -66,6 +67,16 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="py-20 bg-white">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Title */}
@@ -114,10 +125,10 @@ const Contact: React.FC = () => {
                   <div>
                     <div className="font-semibold text-gray-900">Phone</div>
                     <a
-                      href="tel:+254769484646"
+                      href="tel:+254722261776"
                       className="text-gray-600 hover:text-cyan-600 transition-colors"
                     >
-                      +254 769 484646
+                      +254 722 261 776
                     </a>
                   </div>
                 </div>

@@ -27,33 +27,34 @@ const Portfolio: React.FC = () => {
         "https://images.pexels.com/photos/2765872/pexels-photo-2765872.jpeg?auto=compress&cs=tinysrgb&w=800", // Sea image from Pexels
       technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
       liveUrl: "https://jenkinson-sealife.vercel.app",
-      githubUrl: "#",
+      githubUrl: "https://github.com/yussuf3468/jenkinson",
+    },
+    {
+      id: 3,
+      title: "Hospital Management System",
+      category: "java",
+      description:
+        "A group college project built with Java and JavaFX, designed to manage hospital operations such as patient records, appointments, and staff management. My role included backend development and database integration using MySQL.",
+      image:
+        "https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=800",
+      technologies: ["Java", "JavaFX", "MySQL"],
+      liveUrl: "https://github.com/LenzroStudio/AfyaHospital",
+      githubUrl: "https://github.com/LenzroStudio/AfyaHospital",
     },
 
     {
-      id: 3,
-      title: "Restaurant Landing Page",
+      id: 4,
+      title: "Lenzro Website",
       category: "frontend",
       description:
-        "A clean, modern, and mobile-friendly landing page for a local restaurant with menu preview and online reservation form.",
+        "A professional company website for Lenzro Tech built with Next.js and Tailwind CSS. It showcases services, portfolio, and contact information, optimized for performance and SEO.",
       image:
-        "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/YussufMuse/restaurant-landing",
-    },
-    {
-      id: 4,
-      title: "College Project: Student Management System",
-      category: "java",
-      description:
-        "Java-based application for managing student records, grades, and attendance, built as part of a college project.",
-      image:
-        "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=800",
-      technologies: ["Java", "MySQL", "Swing"],
-      liveUrl: "#",
+        "/lenzro1.jpg",
+      technologies: ["Next.js", "Tailwind CSS", "Vercel"],
+      liveUrl: "https://lenzro.com",
       githubUrl: "#",
     },
+
     {
       id: 5,
       title: "Portfolio Website",
@@ -77,6 +78,18 @@ const Portfolio: React.FC = () => {
       technologies: ["Canva", "Facebook Ads", "Instagram Marketing"],
       liveUrl: "#",
       githubUrl: "#",
+    },
+    {
+      id: 7,
+      title: "Restaurant Landing Page",
+      category: "frontend",
+      description:
+        "A clean, modern, and mobile-friendly landing page for a local restaurant with menu preview and online reservation form.",
+      image:
+        "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "#",
+      githubUrl: "https://github.com/YussufMuse/restaurant-landing",
     },
   ];
 

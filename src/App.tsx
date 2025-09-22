@@ -12,6 +12,7 @@ import Timeline from './components/Timeline';
 import Contact from './components/Contact';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
+import FloatingCta from './components/FloatingCta';
 
 function ScrollToSectionOnLoad() {
   const location = useLocation();
@@ -64,6 +65,7 @@ function App() {
   
   return (
     <Router>
+      <FloatingCta />
       <div className="min-h-screen bg-white text-gray-900 font-inter">
         <Header />
         <ScrollToSectionOnLoad />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, Code, TrendingUp, Database, Globe, Clock, User } from 'lucide-react';
+import { BookOpen, Code, TrendingUp, Database, Globe, Clock, User, GraduationCap, MessageSquare } from 'lucide-react';
 
 const Educational: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -43,7 +43,7 @@ const Educational: React.FC = () => {
     },
     {
       id: 5,
-      title: 'The Entrepreneur\'s Guide to Technical Leadership',
+      title: "The Entrepreneur's Guide to Technical Leadership",
       category: 'entrepreneurship',
       excerpt: 'How to balance technical excellence with business strategy when building a tech company.',
       readTime: '14 min read',
@@ -78,6 +78,7 @@ const Educational: React.FC = () => {
     <section id="educational" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
+          {/* Knowledge Hub */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Knowledge <span className="text-yellow-500">Hub</span>
@@ -145,7 +146,27 @@ const Educational: React.FC = () => {
             ))}
           </div>
 
-          <div className="mt-16 text-center">
+          {/* Tutoring & Mentorship Section */}
+          <div className="mt-20 bg-gradient-to-r from-yellow-500/10 to-cyan-500/10 rounded-2xl p-10 shadow-lg text-center">
+            <div className="flex justify-center mb-6">
+              <GraduationCap className="w-12 h-12 text-yellow-600" />
+            </div>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">1-on-1 Tutoring & Mentorship</h3>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+              Need personalized guidance? I offer tailored tutoring sessions in Java, SQL, React, and full-stack development.  
+              Get help with projects, interview prep, or mastering tough concepts with step-by-step mentorship.
+            </p>
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              <MessageSquare className="w-5 h-5" />
+              <span>Book a Tutoring Session</span>
+            </button>
+          </div>
+
+          {/* Newsletter CTA */}
+          {/* <div className="mt-16 text-center">
             <div className="bg-gradient-to-r from-yellow-500/10 to-cyan-500/10 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Want to Learn More?</h3>
               <p className="text-lg text-gray-600 mb-6">
@@ -158,7 +179,7 @@ const Educational: React.FC = () => {
                 Subscribe Now
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

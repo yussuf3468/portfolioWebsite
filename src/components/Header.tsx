@@ -41,12 +41,16 @@ const Header: React.FC = () => {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Avatar (Profile Picture) */}
           <div
             onClick={handleLogoClick}
             className="flex items-center space-x-2 cursor-pointer"
           >
-            <Code className="w-8 h-8 text-yellow-500" />
+            <img
+              src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg"
+              alt="Avatar"
+              className="w-12 h-12 rounded-full object-cover"
+            />
             <span
               className={`text-xl font-bold ${
                 isScrolled ? "text-gray-900" : "text-white"
