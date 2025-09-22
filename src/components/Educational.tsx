@@ -39,7 +39,7 @@ const Educational: React.FC = () => {
         "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400",
       url: "https://www.somalitech.com/barashada-teknolojiyada", // Placeholder link
     },
-     {
+    {
       id: 2,
       title: "Advanced React Patterns for Enterprise Applications",
       category: "web",
@@ -75,7 +75,7 @@ const Educational: React.FC = () => {
         "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=400",
       url: "https://www.somalibusiness.com/ganacsi-internet", // Placeholder link
     },
-   
+
     {
       id: 3,
       title: "SQL Optimization Techniques That Actually Work",
