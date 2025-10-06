@@ -16,6 +16,27 @@ const Educational: React.FC = () => {
 
   const articles = [
     {
+      id: 200,
+      title: "Building Hassan Muse BookShop: Enterprise Inventory Management",
+      category: "case-study",
+      excerpt:
+        "A deep dive into developing a full-stack inventory management system with React, TypeScript, and Supabase. Learn about real-time analytics, bilingual support, and enterprise security implementation.",
+      readTime: "15 min read",
+      date: "2025-10-06",
+      image:
+        "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "https://book-store-nu-nine.vercel.app/",
+      isProject: true,
+      githubUrl: "https://github.com/yussuf3468/bookStore",
+      technologies: ["React", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
+      keyFeatures: [
+        "Real-time inventory tracking with automated alerts",
+        "Advanced sales analytics and profit analysis",
+        "Bilingual interface (English/Somali)",
+        "Enterprise-grade security with Row Level Security",
+      ],
+    },
+    {
       id: 6,
       title: "Building Scalable APIs with Node.js and Express",
       category: "web",
@@ -116,6 +137,7 @@ const Educational: React.FC = () => {
 
   const categories = [
     { id: "all", label: "All Topics", icon: BookOpen },
+    { id: "case-study", label: "Case Studies", icon: TrendingUp },
     { id: "java", label: "Java", icon: Code },
     { id: "web", label: "Web Development", icon: Globe },
     { id: "sql", label: "SQL & Databases", icon: Database },
@@ -197,14 +219,60 @@ const Educational: React.FC = () => {
                     {article.excerpt}
                   </p>
 
-                  <a
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-yellow-600 font-medium hover:text-yellow-700 transition-colors"
-                  >
-                    Read Article →
-                  </a>
+                  {/* Enhanced features for case study projects */}
+                  {article.isProject && article.keyFeatures && (
+                    <div className="mb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2 text-sm">
+                        Key Features:
+                      </h4>
+                      <ul className="space-y-1">
+                        {article.keyFeatures.slice(0, 2).map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start space-x-2 text-xs text-gray-600"
+                          >
+                            <div className="w-1 h-1 bg-yellow-500 rounded-full mt-1.5"></div>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Technology stack for projects */}
+                  {article.technologies && (
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {article.technologies.slice(0, 3).map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-yellow-600 font-medium hover:text-yellow-700 transition-colors text-sm"
+                    >
+                      {article.isProject ? "View Project →" : "Read Article →"}
+                    </a>
+                    {article.githubUrl && (
+                      <a
+                        href={article.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-500 hover:text-gray-700 transition-colors text-sm"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}

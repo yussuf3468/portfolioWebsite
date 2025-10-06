@@ -6,6 +6,37 @@ const Portfolio: React.FC = () => {
 
   const projects = [
     {
+      id: 8,
+      title: "Hassan Muse BookShop Management System",
+      category: "fullstack",
+      description:
+        "Enterprise-grade inventory and sales management platform for retail bookstore operations. Features real-time analytics, staff monitoring, bilingual support (English/Somali), and comprehensive security with Row Level Security (RLS).",
+      image:
+        "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=800",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "PWA",
+      ],
+      liveUrl: "https://book-store-nu-nine.vercel.app/",
+      githubUrl: "https://github.com/yussuf3468/bookStore",
+      features: [
+        "Real-time inventory tracking with automated reorder alerts",
+        "Advanced sales analytics with profit/loss analysis",
+        "Staff activity monitoring with role-based access control",
+        "Bilingual interface (English/Somali) for diverse demographics",
+        "Progressive Web App with offline capabilities",
+        "Enterprise-grade security with JWT and Row Level Security",
+      ],
+      businessImpact:
+        "80% reduction in manual processes, real-time data-driven decisions, comprehensive staff accountability",
+      architecture:
+        "React 18 + TypeScript frontend, Supabase backend with PostgreSQL, PWA capabilities, multi-platform deployment",
+    },
+    {
       id: 1,
       title: "Odyssey Travel Web App",
       category: "fullstack",
@@ -48,8 +79,7 @@ const Portfolio: React.FC = () => {
       category: "frontend",
       description:
         "A professional company website for Lenzro Tech built with Next.js and Tailwind CSS. It showcases services, portfolio, and contact information, optimized for performance and SEO.",
-      image:
-        "/lenzro1.jpg",
+      image: "/lenzro1.jpg",
       technologies: ["Next.js", "Tailwind CSS", "Vercel"],
       liveUrl: "https://lenzro.com",
       githubUrl: "#",
@@ -170,13 +200,66 @@ const Portfolio: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                {/* Content */}
+                <div className="flex-1 bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-yellow-500/20 transition-all duration-300">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {project.title}
+                      </h3>
+                      <span className="text-sm text-gray-500 capitalize bg-gray-100 px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-700 leading-relaxed mb-4">
                     {project.description}
                   </p>
+
+                  {/* Enhanced features for BookShop project */}
+                  {project.features && (
+                    <div className="mb-4">
+                      <h4 className="font-semibold text-gray-900 mb-2">
+                        Key Features:
+                      </h4>
+                      <ul className="space-y-1">
+                        {project.features.slice(0, 3).map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-start space-x-2 text-sm text-gray-600"
+                          >
+                            <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2"></div>
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Business Impact for major projects */}
+                  {project.businessImpact && (
+                    <div className="mb-4 p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
+                      <h4 className="font-semibold text-green-800 mb-1">
+                        Business Impact:
+                      </h4>
+                      <p className="text-sm text-green-700">
+                        {project.businessImpact}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Architecture details */}
+                  {project.architecture && (
+                    <div className="mb-4 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                      <h4 className="font-semibold text-blue-800 mb-1">
+                        Architecture:
+                      </h4>
+                      <p className="text-sm text-blue-700">
+                        {project.architecture}
+                      </p>
+                    </div>
+                  )}
 
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, index) => (
@@ -190,19 +273,26 @@ const Portfolio: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500 capitalize">
-                      {project.category}
-                    </span>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-1 text-yellow-600 hover:text-yellow-700 transition-colors"
-                    >
-                      <span className="text-sm font-medium">View Project</span>
-
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
+                    <div className="flex space-x-3">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-1 text-yellow-600 hover:text-yellow-700 transition-colors"
+                      >
+                        <span className="text-sm font-medium">Live Demo</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-1 text-gray-600 hover:text-gray-700 transition-colors"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span className="text-sm font-medium">Code</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
