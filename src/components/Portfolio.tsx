@@ -12,7 +12,7 @@ const Portfolio: React.FC = () => {
   description:
     "A comprehensive, enterprise-level bookshop management platform integrating POS, inventory, financial operations, mobile support, and an e-commerce storefront. Features a polished glassmorphic dark UI with Capacitor-powered Android compatibility.",
   image:
-    "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=800",
   technologies: [
     "React",
     "TypeScript",
@@ -23,7 +23,7 @@ const Portfolio: React.FC = () => {
     "React Query",
     "Vite"
   ],
-  liveUrl: "https://al-qalam-bookshop.vercel.app",
+  liveUrl: "https://alqalam.lenzro.com/",
   githubUrl: "https://github.com/yussufmuse344-cpu/al-qalam-bookshop",
   features: [
     "Complete POS system with line-item & global discounts",
