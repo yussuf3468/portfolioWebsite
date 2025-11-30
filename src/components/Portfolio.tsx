@@ -6,6 +6,55 @@ const Portfolio: React.FC = () => {
 
   const projects = [
     {
+  id: 9,
+  title: "Al Kalam Bookshop Management System",
+  category: "fullstack",
+  description:
+    "A comprehensive, enterprise-level bookshop management platform integrating POS, inventory, financial operations, mobile support, and an e-commerce storefront. Features a polished glassmorphic dark UI with Capacitor-powered Android compatibility.",
+  image:
+    "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=800",
+  technologies: [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Supabase",
+    "PostgreSQL",
+    "Capacitor",
+    "React Query",
+    "Vite"
+  ],
+  liveUrl: "https://al-qalam-bookshop.vercel.app",
+  githubUrl: "https://github.com/yussufmuse344-cpu/al-qalam-bookshop",
+  features: [
+    "Complete POS system with line-item & global discounts",
+    "Inventory lifecycle management with reorder alerts",
+    "Returns workflow with automated inventory restoration",
+    "Comprehensive financial dashboard: investments, expenses, debts, profits",
+    "Professional PDF report generation (inventory & financials)",
+    "Customer-facing e-commerce portal with cart & order tracking",
+    "Role-based authentication for Admin & Staff",
+    "Cyber services revenue tracking (printing, scanning, photocopying)",
+    "Android support via Capacitor with custom app icon + splash screens",
+    "Dark glassmorphic UI optimized for mobile & desktop"
+  ],
+  businessImpact:
+    "Streamlined business operations, unified financial oversight, reduced manual work, and modernized customer experience with mobile-ready infrastructure.",
+  architecture:
+    "React 18 + TypeScript frontend, Supabase backend with PostgreSQL + RLS, Capacitor mobile runtime, Vite bundler, React Query caching strategy, jsPDF reporting engine."
+},
+    {
+      id: 2,
+      title: "Jenkinson SeaLife Website",
+      category: "college",
+      description:
+        "Website for Jenkinson SeaLife, a marine company based in Singapore, created as a college project showcasing responsive design and marine-themed layouts.",
+      image:
+        "https://images.pexels.com/photos/2765872/pexels-photo-2765872.jpeg?auto=compress&cs=tinysrgb&w=800", // Sea image from Pexels
+      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+      liveUrl: "https://jenkinson-sealife.vercel.app",
+      githubUrl: "https://github.com/yussuf3468/jenkinson",
+    },
+    {
       id: 8,
       title: "Hassan Muse BookShop Management System",
       category: "fullstack",
@@ -47,18 +96,6 @@ const Portfolio: React.FC = () => {
       technologies: ["React", "Node.js", "Express", "MongoDB"],
       liveUrl: "https://travel-blog-nu-amber.vercel.app",
       githubUrl: "https://github.com/YussufMuse/odyssey-travel",
-    },
-    {
-      id: 2,
-      title: "Jenkinson SeaLife Website",
-      category: "college",
-      description:
-        "Website for Jenkinson SeaLife, a marine company based in Singapore, created as a college project showcasing responsive design and marine-themed layouts.",
-      image:
-        "https://images.pexels.com/photos/2765872/pexels-photo-2765872.jpeg?auto=compress&cs=tinysrgb&w=800", // Sea image from Pexels
-      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-      liveUrl: "https://jenkinson-sealife.vercel.app",
-      githubUrl: "https://github.com/yussuf3468/jenkinson",
     },
     {
       id: 3,
