@@ -173,17 +173,26 @@ const Portfolio: React.FC = () => {
       : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="portfolio" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Featured <span className="text-yellow-500">Projects</span>
+    <section
+      id="portfolio"
+      className="relative py-32 bg-dark-900 overflow-hidden"
+    >
+      <div className="absolute inset-0 grid-background opacity-20" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-neon-pink/10 rounded-full blur-[120px]" />
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-pink/30 bg-dark-800/50 backdrop-blur-sm mb-6">
+              <Eye className="w-4 h-4 text-neon-pink" />
+              <span className="text-sm font-mono text-gray-400">Portfolio</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-white">Featured </span>
+              <span className="gradient-text">Projects</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              A showcase of innovative solutions I've built, from enterprise
-              applications to marketing systems that drive real business
-              results.
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+              Innovative solutions from enterprise applications to marketing
+              systems that drive real business results
             </p>
           </div>
 
@@ -195,8 +204,8 @@ const Portfolio: React.FC = () => {
                 onClick={() => setFilter(category.id)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   filter === category.id
-                    ? "bg-gradient-to-r from-yellow-500 to-yellow-600 text-white shadow-lg"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                    ? "bg-gradient-to-r from-neon-cyan to-neon-purple text-white shadow-lg shadow-neon-cyan/50"
+                    : "glass-card text-gray-400 hover:border-neon-cyan/50"
                 }`}
               >
                 {category.label}
@@ -209,7 +218,7 @@ const Portfolio: React.FC = () => {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 hover:border-yellow-500/20 transition-all duration-300 hover:-translate-y-2"
+                className="group glass-card overflow-hidden hover:border-neon-pink/50 transition-all duration-300 hover:scale-105"
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -217,56 +226,56 @@ const Portfolio: React.FC = () => {
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4 flex justify-between">
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
                         href={project.liveUrl}
-                        className="bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+                        className="bg-neon-cyan/20 backdrop-blur-sm p-2 rounded-full hover:bg-neon-cyan/30 transition-colors border border-neon-cyan/30"
                       >
-                        <Eye className="w-4 h-4 text-gray-900" />
+                        <Eye className="w-4 h-4 text-neon-cyan" />
                       </a>
                       <a
                         href={project.githubUrl}
-                        className="bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+                        className="bg-neon-purple/20 backdrop-blur-sm p-2 rounded-full hover:bg-neon-purple/30 transition-colors border border-neon-purple/30"
                       >
-                        <Github className="w-4 h-4 text-gray-900" />
+                        <Github className="w-4 h-4 text-neon-purple" />
                       </a>
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-yellow-500/20 transition-all duration-300">
+                <div className="p-6">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      <h3 className="text-xl font-semibold text-white mb-2">
                         {project.title}
                       </h3>
-                      <span className="text-sm text-gray-500 capitalize bg-gray-100 px-3 py-1 rounded-full">
+                      <span className="text-sm text-gray-500 capitalize bg-dark-700 px-3 py-1 rounded-full border border-white/10">
                         {project.category}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-gray-400 leading-relaxed mb-4 text-sm">
                     {project.description}
                   </p>
 
                   {/* Enhanced features for BookShop project */}
                   {project.features && (
                     <div className="mb-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">
+                      <h4 className="font-semibold text-white mb-2 text-sm">
                         Key Features:
                       </h4>
                       <ul className="space-y-1">
                         {project.features.slice(0, 3).map((feature, idx) => (
                           <li
                             key={idx}
-                            className="flex items-start space-x-2 text-sm text-gray-600"
+                            className="flex items-start space-x-2 text-xs text-gray-500"
                           >
-                            <div className="w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2"></div>
+                            <div className="w-1.5 h-1.5 bg-neon-cyan rounded-full mt-1.5"></div>
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -276,11 +285,11 @@ const Portfolio: React.FC = () => {
 
                   {/* Business Impact for major projects */}
                   {project.businessImpact && (
-                    <div className="mb-4 p-3 bg-green-50 rounded-lg border-l-4 border-green-500">
-                      <h4 className="font-semibold text-green-800 mb-1">
+                    <div className="mb-4 p-3 bg-neon-green/10 rounded-lg border-l-4 border-neon-green">
+                      <h4 className="font-semibold text-neon-green mb-1 text-sm">
                         Business Impact:
                       </h4>
-                      <p className="text-sm text-green-700">
+                      <p className="text-sm text-gray-400">
                         {project.businessImpact}
                       </p>
                     </div>
@@ -288,11 +297,11 @@ const Portfolio: React.FC = () => {
 
                   {/* Architecture details */}
                   {project.architecture && (
-                    <div className="mb-4 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-                      <h4 className="font-semibold text-blue-800 mb-1">
+                    <div className="mb-4 p-3 bg-neon-purple/10 rounded-lg border-l-4 border-neon-purple">
+                      <h4 className="font-semibold text-neon-purple mb-1 text-sm">
                         Architecture:
                       </h4>
-                      <p className="text-sm text-blue-700">
+                      <p className="text-sm text-gray-400">
                         {project.architecture}
                       </p>
                     </div>
@@ -302,7 +311,7 @@ const Portfolio: React.FC = () => {
                     {project.technologies.map((tech, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm rounded-full"
+                        className="px-3 py-1 bg-dark-700 border border-neon-cyan/30 text-neon-cyan text-sm rounded-full"
                       >
                         {tech}
                       </span>
@@ -315,7 +324,7 @@ const Portfolio: React.FC = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-yellow-600 hover:text-yellow-700 transition-colors"
+                        className="flex items-center space-x-1 text-neon-cyan hover:text-neon-purple transition-colors"
                       >
                         <span className="text-sm font-medium">Live Demo</span>
                         <ExternalLink className="w-4 h-4" />
@@ -324,7 +333,7 @@ const Portfolio: React.FC = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center space-x-1 text-gray-600 hover:text-gray-700 transition-colors"
+                        className="flex items-center space-x-1 text-gray-400 hover:text-neon-purple transition-colors"
                       >
                         <Github className="w-4 h-4" />
                         <span className="text-sm font-medium">Code</span>
@@ -337,21 +346,21 @@ const Portfolio: React.FC = () => {
           </div>
 
           {/* Lenzro link - Ready to Transform Your Business? */}
-          <div className="mt-20 text-center">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Ready to <span className="text-yellow-500">Transform</span> Your
+          <div className="mt-20 text-center glass-card p-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Ready to <span className="gradient-text">Transform</span> Your
               Business?
             </h3>
-            <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-              Visit <span className="font-semibold">Lenzro</span> — our startup
-              dedicated to helping businesses grow with creative strategies,
-              modern technology, and data-driven solutions.
+            <p className="text-lg text-gray-400 mb-6 max-w-2xl mx-auto">
+              Visit <span className="font-semibold text-neon-cyan">Lenzro</span>{" "}
+              — our startup dedicated to helping businesses grow with creative
+              strategies, modern technology, and data-driven solutions.
             </p>
             <a
               href="https://lenzro.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-semibold rounded-full shadow-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-neon-cyan to-neon-purple text-white font-semibold rounded-lg shadow-lg hover:shadow-neon-cyan/50 transition-all duration-300 hover:scale-105"
             >
               Explore Lenzro
               <ExternalLink className="ml-2 w-4 h-4" />

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +13,7 @@ import {
   Github,
   Twitter,
   Calendar,
+  MessageSquare,
 } from "lucide-react";
 
 const Contact: React.FC = () => {
@@ -71,7 +73,12 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section
+      id="contact"
+      className="relative py-32 bg-dark-900 overflow-hidden"
+    >
+      <div className="absolute inset-0 grid-background opacity-20" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-purple/10 rounded-full blur-[120px]" />
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -81,52 +88,48 @@ const Contact: React.FC = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        theme="dark"
       />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Title */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Let's <span className="text-yellow-500">Connect</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-purple/30 bg-dark-800/50 backdrop-blur-sm mb-6">
+              <MessageSquare className="w-4 h-4 text-neon-purple" />
+              <span className="text-sm font-mono text-gray-400">Contact</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-white">Let's </span>
+              <span className="gradient-text">Connect</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Ready to transform your business with premium technology
-              solutions? Let's discuss your project and explore how we can work
-              together.
+              solutions? Let's discuss your project
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <div className="glass-card p-8 space-y-8">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <div className="w-1 h-8 bg-gradient-to-b from-neon-cyan to-neon-purple rounded-full" />
                 Get in Touch
               </h3>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+              <p className="text-lg text-gray-400 leading-relaxed mb-8">
                 I'm always excited to discuss new opportunities and
                 challenges...
               </p>
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl">
+                  <div className="p-3 bg-gradient-to-r from-neon-cyan to-blue-500 rounded-xl">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">Email</div>
+                    <div className="font-semibold text-white">Email</div>
                     <a
                       href="mailto:yussuf@lenzro.com"
-                      className="text-gray-600 hover:text-yellow-600 transition-colors"
+                      className="text-gray-400 hover:text-neon-cyan transition-colors"
                     >
                       yussuf@lenzro.com
                     </a>
@@ -134,14 +137,14 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-xl">
+                  <div className="p-3 bg-gradient-to-r from-neon-purple to-purple-500 rounded-xl">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">Phone</div>
+                    <div className="font-semibold text-white">Phone</div>
                     <a
                       href="tel:+254722261776"
-                      className="text-gray-600 hover:text-cyan-600 transition-colors"
+                      className="text-gray-400 hover:text-neon-purple transition-colors"
                     >
                       +254 722 261 776
                     </a>
@@ -149,12 +152,12 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl">
+                  <div className="p-3 bg-gradient-to-r from-neon-pink to-pink-500 rounded-xl">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">Location</div>
-                    <span className="text-gray-600">
+                    <div className="font-semibold text-white">Location</div>
+                    <span className="text-gray-400">
                       Available for remote & on-site projects
                     </span>
                   </div>
@@ -165,7 +168,7 @@ const Contact: React.FC = () => {
                     href="https://calendly.com/yussufh080/20min"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:shadow-xl hover:shadow-green-500/25 transition-all duration-300 hover:scale-[1.02]"
+                    className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-neon-green to-green-600 text-white rounded-lg font-semibold hover:shadow-xl hover:shadow-neon-green/50 transition-all duration-300 hover:scale-105"
                   >
                     <Calendar className="w-5 h-5 mr-2" />
                     Book Free Strategy Call
@@ -174,8 +177,8 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Social Links */}
-              <div className="pt-8 border-t border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-4">
+              <div className="pt-8 border-t border-white/10">
+                <h4 className="font-semibold text-white mb-4">
                   Connect on Social
                 </h4>
                 <div className="flex space-x-4">
@@ -183,31 +186,31 @@ const Contact: React.FC = () => {
                     href="https://github.com/yussuf3468"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-100 rounded-full hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 group"
+                    className="p-3 border border-white/10 rounded-lg hover:border-neon-cyan hover:shadow-neon-cyan transition-all duration-300 group"
                   >
-                    <Github className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    <Github className="w-5 h-5 text-gray-400 group-hover:text-neon-cyan group-hover:scale-110 transition-all" />
                   </a>
                   <a
                     href="https://twitter.com/yussuf3468"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-100 rounded-full hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 group"
+                    className="p-3 border border-white/10 rounded-lg hover:border-neon-purple hover:shadow-neon-purple transition-all duration-300 group"
                   >
-                    <Twitter className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    <Twitter className="w-5 h-5 text-gray-400 group-hover:text-neon-purple group-hover:scale-110 transition-all" />
                   </a>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 border border-gray-100">
+            <div className="glass-card p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Inputs */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-gray-300 mb-2"
                     >
                       Full Name *
                     </label>
@@ -218,14 +221,14 @@ const Contact: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg focus:ring-2 focus:ring-neon-cyan focus:border-transparent transition-all duration-200 text-white placeholder:text-gray-500"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-gray-300 mb-2"
                     >
                       Email Address *
                     </label>
@@ -236,7 +239,7 @@ const Contact: React.FC = () => {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg focus:ring-2 focus:ring-neon-cyan focus:border-transparent transition-all duration-200 text-white placeholder:text-gray-500"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -247,7 +250,7 @@ const Contact: React.FC = () => {
                   <div>
                     <label
                       htmlFor="company"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-gray-300 mb-2"
                     >
                       Company
                     </label>
@@ -257,14 +260,14 @@ const Contact: React.FC = () => {
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg focus:ring-2 focus:ring-neon-cyan focus:border-transparent transition-all duration-200 text-white placeholder:text-gray-500"
                       placeholder="Your company"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="projectType"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-sm font-medium text-gray-300 mb-2"
                     >
                       Project Type
                     </label>
@@ -273,7 +276,7 @@ const Contact: React.FC = () => {
                       name="projectType"
                       value={formData.projectType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg focus:ring-2 focus:ring-neon-cyan focus:border-transparent transition-all duration-200 text-white"
                     >
                       <option value="consultation">Consultation</option>
                       <option value="fullstack">Full-Stack Development</option>
@@ -287,7 +290,7 @@ const Contact: React.FC = () => {
                 <div>
                   <label
                     htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-gray-300 mb-2"
                   >
                     Subject *
                   </label>
@@ -298,7 +301,7 @@ const Contact: React.FC = () => {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg focus:ring-2 focus:ring-neon-cyan focus:border-transparent transition-all duration-200 text-white placeholder:text-gray-500"
                     placeholder="Brief subject of your inquiry"
                   />
                 </div>
@@ -306,7 +309,7 @@ const Contact: React.FC = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-gray-300 mb-2"
                   >
                     Message *
                   </label>
@@ -317,7 +320,7 @@ const Contact: React.FC = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-dark-800 border border-white/10 rounded-lg focus:ring-2 focus:ring-neon-cyan focus:border-transparent transition-all duration-200 text-white placeholder:text-gray-500"
                     placeholder="Tell me about your project..."
                   ></textarea>
                 </div>
@@ -325,7 +328,7 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitted}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white py-4 px-8 rounded-xl font-semibold hover:shadow-xl hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-neon-cyan to-neon-purple text-white py-4 px-8 rounded-lg font-semibold hover:shadow-xl hover:shadow-neon-cyan/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
                   <Send className="w-5 h-5" />
                   <span>{isSubmitted ? "Message Sent!" : "Send Message"}</span>
