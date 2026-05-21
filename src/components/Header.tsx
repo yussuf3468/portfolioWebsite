@@ -1,155 +1,181 @@
-import React, { useState, useEffect } from "react";
-import { Menu, X, Terminal, ChevronRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { cn } from "../lib/cn";
+import { site } from "../data/site";
 
-const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+const nav = [
+  { id: "work", label: "Work", index: "01" },
+  { id: "profile", label: "Profile", index: "02" },
+  { id: "capabilities", label: "Capabilities", index: "03" },
+  { id: "lenzro", label: "Lenzro", index: "04" },
+  { id: "notes", label: "Notes", index: "05" },
+];
 
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    setIsOpen(false);
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const go = (id: string) => {
+    setOpen(false);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   };
 
-  const handleLogoClick = () => {
+  const home = () => {
     navigate("/");
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 50);
+    setOpen(false);
+    requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
   };
-
-  const navItems = ["about", "lenzro", "services", "portfolio", "educational"];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-dark-900/80 backdrop-blur-xl border-b border-white/10 shadow-lg"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.div
-            onClick={handleLogoClick}
-            className="flex items-center gap-3 cursor-pointer group"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg blur-md opacity-50 group-hover:opacity-100 transition-opacity" />
-              <div className="relative bg-dark-800 p-2 rounded-lg border border-neon-cyan/30">
-                <Terminal className="w-6 h-6 text-neon-cyan" />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold text-white font-mono">
-                YM<span className="text-neon-cyan">.</span>
-              </span>
-              <span className="text-xs text-gray-500 font-mono">developer</span>
-            </div>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((section, index) => (
-              <motion.button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className="relative nav-link group"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <span className="relative z-10">
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </span>
-              </motion.button>
-            ))}
-            <motion.button
-              onClick={() => scrollToSection("contact")}
-              className="relative px-6 py-2 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg font-semibold text-white overflow-hidden group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Connect
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </motion.button>
-          </div>
-
-          {/* Mobile Menu Button */}
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color] duration-500",
+          scrolled
+            ? "border-b border-line bg-ink/70 backdrop-blur-xl"
+            : "border-b border-transparent"
+        )}
+      >
+        <div className="container-editorial flex h-16 items-center justify-between md:h-20">
+          {/* Wordmark */}
           <button
-            className="md:hidden p-2 rounded-lg border border-white/10 hover:border-neon-cyan/50 transition-all active:scale-95"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            onClick={home}
+            className="group flex items-baseline gap-3"
+            aria-label="Home"
           >
-            {isOpen ? (
-              <X className="w-6 h-6 text-neon-cyan" />
-            ) : (
-              <Menu className="w-6 h-6 text-white" />
-            )}
+            <span className="font-display text-[1.25rem] font-medium tracking-tightest text-cream">
+              {site.initials}
+              <span className="text-accent">.</span>
+            </span>
+            <span className="hidden font-mono text-[11px] uppercase tracking-tracked text-ash group-hover:text-cream md:inline">
+              {site.role.split("·")[0].trim()}
+            </span>
           </button>
-        </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-10 md:flex" aria-label="Primary">
+            {nav.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => go(item.id)}
+                className="group inline-flex items-baseline gap-2 text-cream/80 transition-colors hover:text-cream"
+              >
+                <span className="font-mono text-[10px] text-ash group-hover:text-accent">
+                  {item.index}
+                </span>
+                <span className="font-sans text-[14px] tracking-tight">
+                  {item.label}
+                </span>
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA + mobile toggle */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => go("contact")}
+              className="hidden items-center gap-2 rounded-full border border-line-strong px-4 py-2 font-mono text-[11px] uppercase tracking-tracked text-cream transition-colors hover:border-accent hover:text-accent md:inline-flex"
             >
-              <div className="flex flex-col gap-4 py-6 border-t border-white/10 mt-4">
-                {navItems.map((section, index) => (
-                  <motion.button
-                    key={section}
-                    onClick={() => scrollToSection(section)}
-                    className="text-left text-gray-300 hover:text-neon-cyan transition-colors font-medium"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <span className="flex items-center gap-2">
-                      <ChevronRight className="w-4 h-4" />
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
-                    </span>
-                  </motion.button>
-                ))}
-                <motion.button
-                  onClick={() => scrollToSection("contact")}
-                  className="mt-4 px-6 py-3 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg font-semibold text-white text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                >
-                  Let's Connect
-                </motion.button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </header>
-  );
-};
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+              </span>
+              Get in touch
+            </button>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="relative h-10 w-10 rounded-full border border-line-strong md:hidden"
+            >
+              <span
+                className={cn(
+                  "absolute left-1/2 top-1/2 block h-px w-4 -translate-x-1/2 bg-cream transition-transform duration-300",
+                  open ? "rotate-45" : "-translate-y-1"
+                )}
+              />
+              <span
+                className={cn(
+                  "absolute left-1/2 top-1/2 block h-px w-4 -translate-x-1/2 bg-cream transition-transform duration-300",
+                  open ? "-rotate-45" : "translate-y-1"
+                )}
+              />
+            </button>
+          </div>
+        </div>
+      </header>
 
-export default Header;
+      {/* Mobile drawer */}
+      <div
+        className={cn(
+          "fixed inset-0 z-40 md:hidden",
+          "transition-[opacity,visibility] duration-500",
+          open ? "visible opacity-100" : "invisible opacity-0"
+        )}
+        aria-hidden={!open}
+      >
+        <div
+          className="absolute inset-0 bg-ink/95 backdrop-blur-2xl"
+          onClick={() => setOpen(false)}
+        />
+        <div className="container-editorial relative flex h-full flex-col pt-28 pb-12">
+          <nav className="flex-1" aria-label="Mobile">
+            <ul className="space-y-1">
+              {nav.map((item, i) => (
+                <li
+                  key={item.id}
+                  className="overflow-hidden border-b border-line"
+                  style={{
+                    transform: open ? "translateY(0)" : "translateY(20px)",
+                    opacity: open ? 1 : 0,
+                    transition: `transform 600ms cubic-bezier(0.22,1,0.36,1) ${i * 60}ms, opacity 600ms ${i * 60}ms`,
+                  }}
+                >
+                  <button
+                    onClick={() => go(item.id)}
+                    className="flex w-full items-baseline justify-between py-5 text-left"
+                  >
+                    <span className="font-display text-3xl tracking-tighter text-cream">
+                      {item.label}
+                    </span>
+                    <span className="font-mono text-[11px] text-ash">
+                      §{item.index}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="flex flex-col gap-4">
+            <button
+              onClick={() => go("contact")}
+              className="w-full rounded-full bg-accent py-4 font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+            >
+              Get in touch
+            </button>
+            <p className="font-mono text-[10px] uppercase tracking-tracked text-ash">
+              {site.email} · {site.location}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

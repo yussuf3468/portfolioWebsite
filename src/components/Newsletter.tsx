@@ -1,126 +1,72 @@
-import React, { useState } from "react";
-import {
-  Mail,
-  Send,
-  CheckCircle,
-  BookOpen,
-  Code,
-  TrendingUp,
-} from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Check } from "lucide-react";
+import { Container } from "./ui/Container";
+import { Reveal } from "./ui/Reveal";
 
-const Newsletter: React.FC = () => {
+export default function Newsletter() {
   const [email, setEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [done, setDone] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsSubscribed(true);
-      setTimeout(() => setIsSubscribed(false), 3000);
-      setEmail("");
-    }
+    if (!email) return;
+    setDone(true);
+    setEmail("");
+    setTimeout(() => setDone(false), 4000);
   };
 
-  const benefits = [
-    {
-      icon: Code,
-      title: "Weekly Tech Insights",
-      description: "Latest trends in Java, React, and full-stack development",
-    },
-    {
-      icon: TrendingUp,
-      title: "Business Strategy Tips",
-      description: "Marketing automation and growth optimization techniques",
-    },
-    {
-      icon: BookOpen,
-      title: "Exclusive Tutorials",
-      description: "In-depth guides and code examples from real projects",
-    },
-  ];
-
   return (
-    <section
-      id="newsletter"
-      className="relative py-32 bg-dark-800 overflow-hidden"
-    >
-      <div className="absolute inset-0 grid-background opacity-20" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-neon-green/10 rounded-full blur-[120px]" />
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-green/30 bg-dark-900/50 backdrop-blur-sm mb-6">
-              <Mail className="w-4 h-4 text-neon-green" />
-              <span className="text-sm font-mono text-gray-400">
-                Newsletter
-              </span>
+    <section id="dispatch" className="relative py-24 md:py-32">
+      <Container>
+        <div className="grid items-end gap-10 border-t border-line pt-16 lg:grid-cols-12 lg:gap-16">
+          <Reveal className="lg:col-span-7">
+            <div className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+              §09 · The Dispatch
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-white">Stay </span>
-              <span className="gradient-text">Informed</span>
+            <h2 className="mt-3 font-display text-display-md tracking-tighter text-cream">
+              A short note,<br />
+              <span className="display-italic">once a month.</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Join 100+ developers and entrepreneurs getting weekly insights on
-              technology, business strategy, and growth tactics
+            <p className="mt-6 max-w-prose text-base leading-relaxed text-smoke">
+              Field notes from active engagements, one essay, one tutorial. No
+              newsletter performance theatre — just the work and what it taught
+              me. Roughly once a month.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="glass-card p-6 hover:border-neon-green/50 transition-all duration-300"
-              >
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-gradient-to-r from-neon-green/20 to-green-500/20 rounded-xl border border-neon-green/30">
-                    <benefit.icon className="w-6 h-6 text-neon-green" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-400 text-sm">{benefit.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
+          <Reveal delay={150} className="lg:col-span-5">
+            <form
+              onSubmit={submit}
+              className="group flex items-center gap-3 border-b border-line-strong pb-4 transition-colors focus-within:border-accent"
+            >
               <input
                 type="email"
+                required
+                placeholder="you@inbox.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address"
-                required
-                className="flex-1 px-6 py-4 bg-dark-800 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-neon-green focus:border-transparent"
+                aria-label="Email address"
+                className="flex-1 border-0 bg-transparent p-0 font-display text-2xl tracking-tighter text-cream placeholder:text-ash focus:outline-none focus:ring-0"
               />
               <button
                 type="submit"
-                disabled={isSubscribed}
-                className="bg-gradient-to-r from-neon-green to-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-2xl hover:shadow-neon-green/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 whitespace-nowrap"
+                disabled={done}
+                aria-label="Subscribe"
+                className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-full bg-accent text-ink-0 transition-colors hover:bg-cream disabled:opacity-60"
               >
-                {isSubscribed ? (
-                  <>
-                    <CheckCircle className="w-5 h-5" />
-                    <span>Subscribed!</span>
-                  </>
+                {done ? (
+                  <Check className="h-4 w-4" />
                 ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    <span>Subscribe</span>
-                  </>
+                  <ArrowUpRight className="h-4 w-4" />
                 )}
               </button>
-            </div>
-          </form>
-
-          <p className="text-sm text-gray-500 mt-6">
-            No spam, unsubscribe anytime. Your email is safe with us.
-          </p>
+            </form>
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-tracked text-ash">
+              No spam · Unsubscribe in one click
+            </p>
+          </Reveal>
         </div>
-      </div>
+      </Container>
     </section>
   );
-};
-
-export default Newsletter;
+}

@@ -1,205 +1,144 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  Code,
-  Server,
-  Database,
-  Smartphone,
-  Cloud,
-  Zap,
-  Users,
-  BarChart3,
-  Sparkles,
-} from "lucide-react";
+import { useState } from "react";
+import { Section } from "./ui/Section";
+import { Reveal } from "./ui/Reveal";
+import { capabilities } from "../data/capabilities";
+import { cn } from "../lib/cn";
 
-const Services: React.FC = () => {
-  const services = [
-    {
-      icon: Code,
-      title: "Full-Stack Development",
-      description:
-        "Modern, scalable web applications with React, Node.js, and cutting-edge frameworks.",
-      features: [
-        "React & TypeScript",
-        "RESTful APIs",
-        "Progressive Web Apps",
-        "Real-time Features",
-      ],
-      gradient: "from-neon-cyan to-blue-500",
-    },
-    {
-      icon: Server,
-      title: "Java Enterprise Solutions",
-      description:
-        "Robust backend systems and microservices architecture for enterprise-grade applications.",
-      features: [
-        "Spring Boot",
-        "Microservices",
-        "API Gateway",
-        "System Integration",
-      ],
-      gradient: "from-neon-purple to-purple-500",
-    },
-    {
-      icon: Database,
-      title: "Database Architecture",
-      description:
-        "Optimized database design, query tuning, and data modeling for peak performance.",
-      features: [
-        "SQL Optimization",
-        "Data Modeling",
-        "Performance Tuning",
-        "Migration Strategy",
-      ],
-      gradient: "from-neon-pink to-pink-500",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Infrastructure",
-      description:
-        "Scalable cloud solutions, deployment automation, and DevOps best practices.",
-      features: [
-        "AWS/Azure/GCP",
-        "CI/CD Pipelines",
-        "Infrastructure as Code",
-        "Auto-scaling",
-      ],
-      gradient: "from-neon-green to-green-500",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile-First Design",
-      description:
-        "Responsive, mobile-optimized applications delivering exceptional user experiences.",
-      features: [
-        "Responsive Design",
-        "PWA Development",
-        "Cross-Platform",
-        "Performance Optimization",
-      ],
-      gradient: "from-yellow-400 to-orange-500",
-    },
-    {
-      icon: BarChart3,
-      title: "Marketing Automation",
-      description:
-        "Data-driven marketing systems, analytics dashboards, and growth optimization.",
-      features: [
-        "Marketing Automation",
-        "Analytics Integration",
-        "CRM Systems",
-        "Lead Generation",
-      ],
-      gradient: "from-indigo-400 to-purple-500",
-    },
-  ];
+export default function Services() {
+  const [active, setActive] = useState(capabilities[0].index);
+  const current =
+    capabilities.find((c) => c.index === active) ?? capabilities[0];
 
   return (
-    <section
-      id="services"
-      className="relative py-32 bg-dark-800 overflow-hidden"
+    <Section
+      id="capabilities"
+      index="03"
+      label="Capabilities"
+      meta="What I take on"
+      full
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 grid-background opacity-20" />
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-neon-purple/10 rounded-full blur-[120px]" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-purple/30 bg-dark-900/50 backdrop-blur-sm mb-6">
-              <Zap className="w-4 h-4 text-neon-purple" />
-              <span className="text-sm font-mono text-gray-400">Services</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-white">What I </span>
-              <span className="gradient-text">Build</span>
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+        {/* Heading column */}
+        <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
+          <Reveal>
+            <h2 className="font-display text-display-md tracking-tighter text-cream">
+              Six disciplines.<br />
+              <span className="display-italic">One operating model.</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              End-to-end solutions from architecture to deployment, crafted with
-              precision and built for scale
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="mt-6 max-w-prose text-base leading-relaxed text-smoke">
+              I work across product, platform and data. The framing changes;
+              the practice — small teams, clear schemas, restrained motion,
+              honest deadlines — stays the same.
             </p>
-          </motion.div>
+          </Reveal>
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group glass-card p-8 hover:border-neon-cyan/50 transition-all hover:scale-105 relative overflow-hidden"
-              >
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/5 to-neon-purple/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div
-                    className={`inline-flex p-4 bg-gradient-to-br ${service.gradient} rounded-xl shadow-lg mb-6`}
+          <Reveal delay={250}>
+            <div className="mt-10 hidden rounded-xl border border-line-strong p-6 lg:block">
+              <div className="font-mono text-[11px] uppercase tracking-tracked text-ash">
+                Detail
+              </div>
+              <h3 className="mt-3 font-display text-2xl tracking-tighter text-cream">
+                {current.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-smoke">
+                {current.detail}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {current.tools.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-tracked text-cream/80"
                   >
-                    <service.icon className="w-7 h-7 text-white" />
-                  </div>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-400 leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Features */}
-                  <div className="space-y-3">
-                    {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 bg-neon-cyan rounded-full" />
-                        <span className="text-sm text-gray-500 font-mono">
-                          {feature}
+        {/* List column */}
+        <div className="lg:col-span-7">
+          <ul className="border-t border-line">
+            {capabilities.map((c) => {
+              const isActive = active === c.index;
+              return (
+                <li
+                  key={c.index}
+                  className="border-b border-line"
+                  onMouseEnter={() => setActive(c.index)}
+                  onFocus={() => setActive(c.index)}
+                >
+                  <button
+                    onClick={() => setActive(c.index)}
+                    className="group flex w-full items-baseline gap-6 py-7 text-left"
+                  >
+                    <span className="font-mono text-[11px] uppercase tracking-tracked text-ash">
+                      {c.index}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3
+                          className={cn(
+                            "font-display text-2xl tracking-tighter transition-all duration-500 ease-editorial md:text-3xl",
+                            isActive
+                              ? "translate-x-2 text-cream"
+                              : "text-cream/70 group-hover:text-cream"
+                          )}
+                        >
+                          {c.title}
+                        </h3>
+                        <span
+                          className={cn(
+                            "hidden font-mono text-[11px] uppercase tracking-tracked transition-colors md:inline",
+                            isActive ? "text-accent" : "text-ash"
+                          )}
+                        >
+                          {isActive ? "Active" : "View"}
                         </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                      <p
+                        className={cn(
+                          "mt-1 max-w-prose text-sm transition-colors",
+                          isActive ? "text-smoke" : "text-ash"
+                        )}
+                      >
+                        {c.summary}
+                      </p>
 
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center mt-16"
-          >
-            <button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg font-semibold text-white hover:scale-105 transition-transform shadow-lg hover:shadow-neon-cyan/50"
-            >
-              <Sparkles className="w-5 h-5" />
-              <span>Start Your Project</span>
-            </button>
-          </motion.div>
+                      {/* Mobile: inline detail */}
+                      <div
+                        className={cn(
+                          "grid overflow-hidden transition-[grid-template-rows] duration-500 lg:hidden",
+                          isActive ? "mt-4 grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        )}
+                      >
+                        <div className="min-h-0">
+                          <p className="pb-2 text-sm leading-relaxed text-smoke">
+                            {c.detail}
+                          </p>
+                          <div className="flex flex-wrap gap-1.5 pb-2">
+                            {c.tools.map((t) => (
+                              <span
+                                key={t}
+                                className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-tracked text-cream/80"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
-    </section>
+    </Section>
   );
-};
-
-export default Services;
+}

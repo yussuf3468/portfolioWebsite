@@ -1,267 +1,147 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  Code2,
-  Database,
-  Globe,
-  Cpu,
-  Zap,
-  Award,
-  Calendar,
-  Sparkles,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { Section } from "./ui/Section";
+import { Reveal } from "./ui/Reveal";
+import { site } from "../data/site";
 
-const About: React.FC = () => {
-  const skills = [
-    {
-      name: "Full-Stack Development",
-      icon: Globe,
-      description: "React, Node.js, TypeScript with cloud-native architecture",
-      color: "from-neon-cyan to-blue-500",
-    },
-    {
-      name: "Java Engineering",
-      icon: Code2,
-      description: "Enterprise systems, microservices, Spring Boot ecosystem",
-      color: "from-neon-purple to-purple-500",
-    },
-    {
-      name: "Data Architecture",
-      icon: Database,
-      description: "SQL optimization, analytics pipelines, ETL workflows",
-      color: "from-neon-pink to-pink-500",
-    },
-    {
-      name: "System Design",
-      icon: Cpu,
-      description:
-        "Scalable architecture, distributed systems, cloud infrastructure",
-      color: "from-neon-green to-green-500",
-    },
-    {
-      name: "Performance Optimization",
-      icon: Zap,
-      description: "Code efficiency, caching strategies, load balancing",
-      color: "from-yellow-400 to-orange-500",
-    },
-    {
-      name: "Leadership & Mentoring",
-      icon: Award,
-      description: "Team building, technical guidance, knowledge sharing",
-      color: "from-indigo-400 to-purple-500",
-    },
-  ];
+const principles = [
+  {
+    n: "01",
+    title: "Code with restraint",
+    body: "The hardest part of an interface is what you choose not to put in it.",
+  },
+  {
+    n: "02",
+    title: "Boring on purpose",
+    body: "Predictable systems beat clever ones. They are easier to teach, debug and trust on the third year.",
+  },
+  {
+    n: "03",
+    title: "Build with the room in mind",
+    body: "Software lives inside an organisation. I design for the person who has to keep it running on a Tuesday.",
+  },
+  {
+    n: "04",
+    title: "Teach as you ship",
+    body: "Every project leaves behind a clearer team, not just a deployment.",
+  },
+];
 
-  const stats = [
-    { label: "Years Experience", value: "5+" },
-    { label: "Projects Delivered", value: "50+" },
-    { label: "Technologies", value: "20+" },
-    { label: "Client Satisfaction", value: "99%" },
-  ];
-
+export default function About() {
   return (
-    <section id="about" className="relative py-32 bg-dark-900 overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 grid-background opacity-20" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-neon-purple/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-cyan/10 rounded-full blur-[120px]" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-cyan/30 bg-dark-800/50 backdrop-blur-sm mb-6">
-              <Sparkles className="w-4 h-4 text-neon-cyan" />
-              <span className="text-sm font-mono text-gray-400">About Me</span>
+    <Section
+      id="profile"
+      index="02"
+      label="Profile"
+      meta="Engineering · Studio · Mentorship"
+      full
+    >
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        {/* Portrait */}
+        <Reveal className="lg:col-span-5">
+          <figure className="relative">
+            <div className="overflow-hidden rounded-2xl border border-line-strong">
+              <img
+                src="/myphoto1.jpg"
+                alt={site.name}
+                className="aspect-[4/5] w-full object-cover grayscale transition-[filter] duration-700 ease-editorial hover:grayscale-0"
+              />
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="text-white">Crafting Digital </span>
-              <span className="gradient-text">Excellence</span>
+            <figcaption className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-tracked text-ash">
+              <span>{site.name}</span>
+              <span>{site.location}</span>
+            </figcaption>
+
+            {/* signature corner mark */}
+            <div className="pointer-events-none absolute -top-3 -left-3 flex h-12 w-12 items-center justify-center rounded-full border border-line-strong bg-ink-0 font-mono text-[10px] uppercase tracking-tracked text-accent">
+              {site.initials}
+            </div>
+          </figure>
+        </Reveal>
+
+        {/* Body */}
+        <div className="lg:col-span-7">
+          <Reveal>
+            <h2 className="font-display text-display-md tracking-tighter text-cream">
+              Engineer first.<br />
+              <span className="display-italic">Co-founder by necessity.</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              A passionate engineer and entrepreneur, transforming complex
-              challenges into elegant, scalable solutions
-            </p>
-          </motion.div>
+          </Reveal>
 
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
-            {/* Left Column - Story */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-6"
-            >
-              <div className="glass-card p-8">
-                <h3 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
-                  <div className="w-1 h-8 bg-gradient-to-b from-neon-cyan to-neon-purple rounded-full" />
-                  My Journey
-                </h3>
-                <div className="space-y-4 text-gray-400 leading-relaxed">
-                  <p>
-                    My journey in technology started with a simple question:{" "}
-                    <span className="text-neon-cyan font-semibold">
-                      How can code change lives?
-                    </span>{" "}
-                    From crafting my first Java application to co-founding{" "}
-                    <span className="text-neon-purple font-semibold">
-                      Lenzro
-                    </span>
-                    , I've been driven by the pursuit of excellence and
-                    innovation.
-                  </p>
-                  <p>
-                    Today, I architect systems that power businesses at scale.
-                    Whether it's building high-performance APIs, optimizing
-                    database queries, or designing cloud infrastructure, I bring
-                    both <span className="text-neon-cyan">technical depth</span>{" "}
-                    and{" "}
-                    <span className="text-neon-purple">strategic vision</span>{" "}
-                    to every project.
-                  </p>
-                  <p>
-                    Through Lenzro, we've transformed how businesses approach
-                    digital solutions. I believe in sharing
-                    knowledge—contributing to open source, writing technical
-                    content, and mentoring the next generation of developers.
-                  </p>
-                </div>
-
-                {/* CTA Button */}
+          <Reveal delay={150}>
+            <div className="mt-8 space-y-6 text-base leading-relaxed text-smoke md:text-lg md:leading-relaxed">
+              <p>
+                I'm Yussuf — a software engineer working across product, platform
+                and data. My first line of code was Java in 2019; six years
+                later I'm still drawn to systems with clear boundaries and
+                schemas you can read out loud.
+              </p>
+              <p>
+                In 2023 I co-founded{" "}
                 <a
-                  href="https://calendly.com/yussufh080/20min"
+                  href="https://lenzro.com"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 mt-6 px-6 py-3 bg-gradient-to-r from-neon-green to-green-600 rounded-lg font-semibold text-white hover:scale-105 transition-transform shadow-lg hover:shadow-neon-green/50"
+                  rel="noreferrer"
+                  className="text-cream link-underline"
                 >
-                  <Calendar className="w-5 h-5" />
-                  <span>Book a Strategy Session</span>
+                  Lenzro
                 </a>
-              </div>
+                , a small studio building serious software for businesses across
+                East Africa. The work spans retail point-of-sale, hospitality,
+                education and the marketing systems that hold them together.
+              </p>
+              <p>
+                Outside the studio I write field notes on building for bilingual
+                users, mentor junior engineers on Java and SQL, and contribute
+                back to the open-source pieces that make this practice possible.
+              </p>
+            </div>
+          </Reveal>
 
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                    className="glass-card p-6 text-center group hover:border-neon-cyan/50 transition-all"
-                  >
-                    <div className="text-3xl font-bold gradient-text mb-2">
-                      {stat.value}
+          <Reveal delay={300}>
+            <div className="mt-12">
+              <div className="hairline" />
+              <div className="grid grid-cols-1 divide-y divide-line md:grid-cols-2 md:divide-x md:divide-y-0">
+                {principles.map((p) => (
+                  <div key={p.n} className="py-6 first:pt-7 md:px-8 md:first:pl-0 md:last:pr-0">
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-mono text-[11px] uppercase tracking-tracked text-accent">
+                        {p.n}
+                      </span>
+                      <h3 className="font-display text-xl tracking-tighter text-cream">
+                        {p.title}
+                      </h3>
                     </div>
-                    <div className="text-sm text-gray-500 font-mono">
-                      {stat.label}
-                    </div>
-                  </motion.div>
+                    <p className="mt-3 max-w-prose text-sm leading-relaxed text-smoke">
+                      {p.body}
+                    </p>
+                  </div>
                 ))}
               </div>
-            </motion.div>
-
-            {/* Right Column - Image & Values */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-6"
-            >
-              <div className="glass-card p-8">
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
-                  <img
-                    src="/myphoto1.jpg"
-                    alt="Yussuf Muse"
-                    className="relative w-full h-auto rounded-2xl shadow-2xl"
-                  />
-                </div>
-
-                <div className="mt-8 space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-2 h-2 bg-neon-cyan rounded-full animate-pulse" />
-                    <span className="text-xl font-semibold text-white">
-                      Core Principles
-                    </span>
-                  </div>
-                  <ul className="space-y-4">
-                    {[
-                      "Code with purpose, build with passion",
-                      "Continuous learning, constant evolution",
-                      "Clean code, clear communication",
-                      "Empowering others through technology",
-                    ].map((value, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.6 + index * 0.1 }}
-                        className="flex items-start gap-3 text-gray-400"
-                      >
-                        <div className="w-1.5 h-1.5 bg-neon-purple rounded-full mt-2 flex-shrink-0" />
-                        <span>{value}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Skills Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <h3 className="text-3xl font-bold text-white text-center mb-12">
-              Technical <span className="gradient-text">Expertise</span>
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                  className="glass-card p-6 group hover:border-neon-cyan/50 transition-all hover:scale-105"
-                >
-                  <div className="flex items-start gap-4">
-                    <div
-                      className={`p-3 bg-gradient-to-br ${skill.color} rounded-xl shadow-lg`}
-                    >
-                      <skill.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-semibold text-white mb-2">
-                        {skill.name}
-                      </h4>
-                      <p className="text-sm text-gray-500 leading-relaxed">
-                        {skill.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="hairline" />
             </div>
-          </motion.div>
+          </Reveal>
+
+          <Reveal delay={400}>
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <a
+                href={site.calendar}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-tracked text-cream hover:text-accent"
+              >
+                Book a 20-min call
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-tracked text-smoke hover:text-cream"
+              >
+                {site.email}
+              </a>
+            </div>
+          </Reveal>
         </div>
       </div>
-    </section>
+    </Section>
   );
-};
-
-export default About;
+}

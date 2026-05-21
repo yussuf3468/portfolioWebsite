@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,6 +6,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
+
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -19,23 +20,17 @@ import Contact from "./components/Contact";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import FloatingCta from "./components/FloatingCta";
+import { Cursor } from "./components/ui/Cursor";
 
-function ScrollToSectionOnLoad() {
+function ScrollToContact() {
   const location = useLocation();
-
   useEffect(() => {
     if (location.pathname === "/contact") {
       const el = document.getElementById("contact");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   }, [location]);
-
-  // If URL is /contact, change it back to /
-  if (location.pathname === "/contact") {
-    return <Navigate to="/" replace />;
-  }
+  if (location.pathname === "/contact") return <Navigate to="/" replace />;
   return null;
 }
 
@@ -43,10 +38,10 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <About />
-      <Lenzro />
-      <Services />
       <Portfolio />
+      <About />
+      <Services />
+      <Lenzro />
       <Educational />
       <Testimonials />
       <Timeline />
@@ -56,29 +51,17 @@ function HomePage() {
   );
 }
 
-function App() {
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolled = window.scrollY;
-      const parallax = document.querySelector(".parallax");
-      if (parallax) {
-        parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+export default function App() {
   return (
     <Router>
-      <FloatingCta />
-      <div className="min-h-screen bg-dark-900 text-gray-100 font-inter">
+      <div className="relative min-h-screen bg-ink text-cream font-sans antialiased">
+        <Cursor />
         <Header />
-        <ScrollToSectionOnLoad />
+        <FloatingCta />
+        <ScrollToContact />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* This allows /contact to exist but just redirects */}
             <Route path="/contact" element={<HomePage />} />
           </Routes>
         </main>
@@ -87,5 +70,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

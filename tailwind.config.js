@@ -3,68 +3,106 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        inter: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "Consolas", "monospace"],
-      },
       colors: {
-        "neon-cyan": "#00F0FF",
-        "neon-purple": "#B026FF",
-        "neon-pink": "#FF006E",
-        "neon-green": "#00FF87",
-        dark: {
-          900: "#0A0A0F",
-          800: "#13131A",
-          700: "#1A1A24",
-          600: "#252530",
+        ink: {
+          DEFAULT: "#06060A",
+          0: "#030305",
+          1: "#0A0A0F",
+          2: "#101016",
+          3: "#16161E",
+          4: "#1D1D26",
         },
+        line: {
+          DEFAULT: "rgba(255,255,255,0.06)",
+          strong: "rgba(255,255,255,0.10)",
+        },
+        cream: "#F2F0EA",
+        bone: "#E8E6DF",
+        smoke: "#9A9AA5",
+        ash: "#5C5C68",
+        graphite: "#3A3A44",
+        accent: {
+          DEFAULT: "#D7FF3A",
+          dim: "#A9CC2E",
+          glow: "rgba(215,255,58,0.18)",
+        },
+        signal: {
+          coral: "#FF7849",
+          azure: "#7FBEFF",
+        },
+      },
+      fontFamily: {
+        display: [
+          "Inter Display",
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "sans-serif",
+        ],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        serif: ["Fraunces", "Georgia", "serif"],
+        mono: [
+          "JetBrains Mono",
+          "Geist Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "monospace",
+        ],
+      },
+      fontSize: {
+        "display-xl": [
+          "clamp(3.5rem, 10vw, 9rem)",
+          { lineHeight: "0.92", letterSpacing: "-0.04em", fontWeight: "500" },
+        ],
+        "display-lg": [
+          "clamp(2.75rem, 7vw, 6.5rem)",
+          { lineHeight: "0.96", letterSpacing: "-0.035em", fontWeight: "500" },
+        ],
+        "display-md": [
+          "clamp(2rem, 4.5vw, 4rem)",
+          { lineHeight: "1.02", letterSpacing: "-0.03em", fontWeight: "500" },
+        ],
+        eyebrow: [
+          "0.72rem",
+          { lineHeight: "1", letterSpacing: "0.18em", fontWeight: "500" },
+        ],
+      },
+      letterSpacing: {
+        tightest: "-0.045em",
+        tighter: "-0.035em",
+        tracked: "0.18em",
+      },
+      maxWidth: {
+        prose: "62ch",
+        editorial: "1280px",
+      },
+      transitionTimingFunction: {
+        editorial: "cubic-bezier(0.22, 1, 0.36, 1)",
+        soft: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
       animation: {
-        "fade-in": "fadeIn 0.6s ease-out forwards",
-        "slide-up": "slideUp 0.7s ease-out forwards",
-        glow: "glow 2s ease-in-out infinite",
-        float: "float 3s ease-in-out infinite",
-        scan: "scan 8s linear infinite",
-        gradient: "gradient 8s ease infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-slow": "marquee 80s linear infinite",
+        "pulse-dot": "pulseDot 2.4s ease-in-out infinite",
+        "fade-up": "fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards",
       },
       keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        pulseDot: {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.4", transform: "scale(0.85)" },
+        },
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(40px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        glow: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 240, 255, 0.5)" },
-          "50%": { boxShadow: "0 0 40px rgba(176, 38, 255, 0.8)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        scan: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
-        },
-        gradient: {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
-      },
-      boxShadow: {
-        "neon-cyan": "0 0 30px rgba(0, 240, 255, 0.5)",
-        "neon-purple": "0 0 30px rgba(176, 38, 255, 0.5)",
-        "neon-pink": "0 0 30px rgba(255, 0, 110, 0.5)",
-        "glow-strong": "0 0 60px rgba(0, 240, 255, 0.3)",
       },
       backgroundImage: {
-        "grid-pattern":
-          "linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px)",
-      },
-      backgroundSize: {
-        grid: "50px 50px",
+        "noise":
+          "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.6 0 0 0 0 0.6 0 0 0 0 0.6 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
       },
     },
   },

@@ -1,216 +1,136 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  Terminal,
-  Mail,
-  Phone,
-  MapPin,
-  ExternalLink,
-  Heart,
-  Calendar,
-  Github,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { Container } from "./ui/Container";
+import { site } from "../data/site";
 
-const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
+const sitemap = [
+  { id: "work", label: "Selected work" },
+  { id: "profile", label: "Profile" },
+  { id: "capabilities", label: "Capabilities" },
+  { id: "lenzro", label: "Studio" },
+  { id: "notes", label: "Field notes" },
+  { id: "trust", label: "Testimonials" },
+  { id: "trajectory", label: "Trajectory" },
+  { id: "contact", label: "Contact" },
+];
 
-  const quickLinks = [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Contact", href: "#contact" },
-  ];
+const elsewhere = [
+  { href: site.social.github, label: "GitHub" },
+  { href: site.social.linkedin, label: "LinkedIn" },
+  { href: site.social.twitter, label: "Twitter" },
+  { href: "https://lenzro.com", label: "Lenzro" },
+];
 
-  const resources = [
-    { label: "Educational Hub", href: "#educational" },
-    { label: "Testimonials", href: "#testimonials" },
-    { label: "My Journey", href: "#timeline" },
-  ];
+export default function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [time, setTime] = useState("");
 
-  const socialLinks = [
-    { icon: Github, href: "https://github.com/yusufmuze", label: "GitHub" },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/yussuf-muse",
-      label: "LinkedIn",
-    },
-    { icon: Twitter, href: "#", label: "Twitter" },
-  ];
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace("#", ""));
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+    const fmt = () =>
+      new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: site.timezone,
+      }).format(new Date());
+    setTime(fmt());
+    const id = setInterval(() => setTime(fmt()), 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
-    <footer className="relative bg-dark-900 text-white overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 grid-background opacity-10" />
-      <div className="absolute top-0 left-0 w-96 h-96 bg-neon-cyan/5 rounded-full blur-[120px]" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Main Footer Content */}
-        <div className="py-20 border-b border-white/10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {/* Brand Section */}
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-neon-purple rounded-lg blur-md opacity-50" />
-                  <div className="relative bg-dark-800 p-2 rounded-lg border border-neon-cyan/30">
-                    <Terminal className="w-6 h-6 text-neon-cyan" />
-                  </div>
-                </div>
-                <span className="text-2xl font-bold font-mono">
-                  YM<span className="text-neon-cyan">.</span>developer
-                </span>
-              </div>
-              <p className="text-gray-400 leading-relaxed mb-6 max-w-lg">
-                Full-stack engineer and co-founder of{" "}
-                <span className="text-neon-purple font-semibold">Lenzro</span>,
-                crafting premium technology solutions that transform businesses
-                through innovative code and strategic thinking.
-              </p>
-
-              {/* Contact Info */}
-              <div className="space-y-3 mb-8">
-                <a
-                  href="mailto:yussuf@lenzro.com"
-                  className="flex items-center gap-3 text-gray-400 hover:text-neon-cyan transition-colors group"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>yussuf@lenzro.com</span>
-                </a>
-                <a
-                  href="tel:+254722261776"
-                  className="flex items-center gap-3 text-gray-400 hover:text-neon-purple transition-colors group"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>+254 722 261 776</span>
-                </a>
-                <div className="flex items-center gap-3 text-gray-400">
-                  <MapPin className="w-4 h-4" />
-                  <span>Remote & On-site Available</span>
-                </div>
-              </div>
-
-              {/* CTA Button */}
-              <a
-                href="https://calendly.com/yussufh080/20min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-neon-green to-green-600 rounded-lg font-semibold text-white hover:scale-105 transition-transform shadow-lg hover:shadow-neon-green/50"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>Book Strategy Call</span>
-              </a>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                <div className="w-1 h-6 bg-gradient-to-b from-neon-cyan to-neon-purple rounded-full" />
-                Quick Links
-              </h4>
-              <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-gray-400 hover:text-neon-cyan transition-colors flex items-center gap-2 group"
-                    >
-                      <span className="w-1 h-1 bg-neon-cyan rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                <div className="w-1 h-6 bg-gradient-to-b from-neon-purple to-neon-pink rounded-full" />
-                Resources
-              </h4>
-              <ul className="space-y-3">
-                {resources.map((link, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-2 group"
-                    >
-                      <span className="w-1 h-1 bg-neon-purple rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+    <footer className="relative mt-24 border-t border-line pt-24 pb-10">
+      <Container>
+        {/* Oversized wordmark */}
+        <div className="relative">
+          <h2 className="font-display text-[clamp(4rem,18vw,18rem)] leading-[0.85] tracking-tightest text-cream/95">
+            {site.name.split(" ")[0]}
+            <span className="text-accent">.</span>
+          </h2>
+          <p className="mt-4 max-w-prose font-display text-2xl tracking-tighter text-cream md:text-3xl">
+            {site.tagline}
+          </p>
         </div>
 
-        {/* Lenzro Section */}
-        <div className="py-12 border-b border-white/10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold mb-4">
-              <span className="text-white">Visit </span>
-              <span className="gradient-text">Lenzro</span>
-            </h3>
-            <p className="text-gray-400 mb-6">
-              Discover premium marketing and systems development services.
-              Complete technology solutions that accelerate business growth.
-            </p>
-            <a
-              href="https://lenzro.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-neon-purple to-neon-pink rounded-lg font-semibold text-white hover:scale-105 transition-transform shadow-lg hover:shadow-neon-purple/50"
-            >
-              <span>Explore Lenzro</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom Footer */}
-        <div className="py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            {/* Copyright */}
-            <div className="flex items-center gap-2 text-gray-400">
-              <span>© {currentYear} Yussuf Muse</span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                Made with{" "}
-                <Heart className="w-4 h-4 text-neon-pink animate-pulse" /> and
-                coffee
-              </span>
+        <div className="mt-20 grid grid-cols-2 gap-y-12 md:grid-cols-12">
+          {/* Sitemap */}
+          <div className="col-span-2 md:col-span-5">
+            <div className="font-mono text-[10px] uppercase tracking-tracked text-ash">
+              Sitemap
             </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg border border-white/10 hover:border-neon-cyan hover:shadow-neon-cyan transition-all group"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5 text-gray-400 group-hover:text-neon-cyan transition-colors" />
-                </a>
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2">
+              {sitemap.map((s) => (
+                <li key={s.id}>
+                  <a
+                    href={`#${s.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById(s.id)
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="font-sans text-sm text-cream/80 transition-colors hover:text-cream"
+                  >
+                    {s.label}
+                  </a>
+                </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Elsewhere */}
+          <div className="col-span-1 md:col-span-3">
+            <div className="font-mono text-[10px] uppercase tracking-tracked text-ash">
+              Elsewhere
             </div>
+            <ul className="mt-4 space-y-2">
+              {elsewhere.map((e) => (
+                <li key={e.label}>
+                  <a
+                    href={e.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group inline-flex items-center gap-1.5 font-sans text-sm text-cream/80 transition-colors hover:text-cream"
+                  >
+                    {e.label}
+                    <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="col-span-2 md:col-span-4">
+            <div className="font-mono text-[10px] uppercase tracking-tracked text-ash">
+              Contact
+            </div>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <a
+                  href={`mailto:${site.email}`}
+                  className="block font-sans text-sm text-cream"
+                >
+                  {site.email}
+                </a>
+              </li>
+              <li className="font-sans text-sm text-cream/80">{site.phone}</li>
+              <li className="font-mono text-[11px] uppercase tracking-tracked text-smoke">
+                {site.location} · {time}
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
+
+        {/* Baseline */}
+        <div className="mt-20 flex flex-col gap-3 border-t border-line pt-6 font-mono text-[10px] uppercase tracking-tracked text-ash md:flex-row md:items-center md:justify-between">
+          <span>
+            © {year} {site.name} · Composed in Nairobi
+          </span>
+          <span>Portfolio v04 — 2026 edition</span>
+        </div>
+      </Container>
     </footer>
   );
-};
-
-export default Footer;
+}
