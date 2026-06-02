@@ -24,7 +24,7 @@ export interface Work {
 export const work: Work[] = [
   {
     index: "01",
-    title: "Al Kalam Bookshop",
+    title: "POS/Inventory System",
     year: "2025",
     role: "Product · Engineering",
     category: "product",
@@ -33,8 +33,8 @@ export const work: Work[] = [
     stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "Capacitor"],
     image:
       "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    liveUrl: "https://alqalam.lenzro.com/",
-    repoUrl: "https://github.com/yussufmuse344-cpu/al-qalam-bookshop",
+    liveUrl: "https://hassan.lenzro.com/",
+    repoUrl: "https://github.com/yussuf3468/HassanFinanceSystem",
     impact:
       "Replaced spreadsheets and three separate tools with a single source of truth across POS, finance and customer-facing storefront.",
     highlights: [
@@ -44,6 +44,20 @@ export const work: Work[] = [
       "PDF reporting for inventory and financials",
       "Role-based access for admin and staff",
     ],
+    featured: true,
+  },
+  {
+    index: "04",
+    title: "Personal Portfolio",
+    year: "2025",
+    role: "Design · Engineering",
+    category: "interface",
+    blurb:
+      "My personal portfolio — a curated showcase of work, thinking and craft. Built for performance and expression with fluid motion and a considered visual system.",
+    stack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion"],
+    image:
+      "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    liveUrl: "https://yussuf.lenzro.com",
     featured: true,
   },
   {
@@ -84,7 +98,7 @@ export const work: Work[] = [
     repoUrl: "https://github.com/YussufMuse/odyssey-travel",
   },
   {
-    index: "04",
+    index: "05",
     title: "Lenzro",
     year: "2023",
     role: "Co-founder · Frontend",
@@ -97,7 +111,7 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "05",
+    index: "07",
     title: "Afya Hospital Management",
     year: "2022",
     role: "Backend · Database",
@@ -110,7 +124,7 @@ export const work: Work[] = [
     repoUrl: "https://github.com/LenzroStudio/AfyaHospital",
   },
   {
-    index: "06",
+    index: "08",
     title: "Lenzro Growth Campaign",
     year: "2024",
     role: "Strategy · Creative",
