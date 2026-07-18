@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ElementType, ReactNode, useEffect, useRef } from "react";
 import { cn } from "../../lib/cn";
 
 interface RevealProps {
@@ -47,15 +47,15 @@ export function Reveal({
     return () => io.disconnect();
   }, [delay, threshold]);
 
+  const Tag = As as ElementType;
   return (
-    // @ts-expect-error generic element typing
-    <As
+    <Tag
       ref={ref}
       data-reveal=""
       className={cn(className)}
       style={{ transitionDelay: delay ? `${delay}ms` : undefined }}
     >
       {children}
-    </As>
+    </Tag>
   );
 }

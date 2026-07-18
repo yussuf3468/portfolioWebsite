@@ -225,14 +225,14 @@ export default function Contact() {
               placeholder="What are you trying to build, fix or replace?"
             />
 
-            <div className="flex items-center justify-between gap-4 bg-ink-1 px-6 py-5">
+            <div className="flex flex-col-reverse items-stretch gap-4 bg-ink-1 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
               <p className="font-mono text-[10px] uppercase tracking-tracked text-ash">
                 I'll reply within 24 hours.
               </p>
               <button
                 type="submit"
                 disabled={sending}
-                className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0 transition-colors hover:bg-cream disabled:opacity-50"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 font-mono text-[12px] uppercase tracking-tracked text-ink-0 transition-colors hover:bg-cream disabled:opacity-50 sm:py-3"
               >
                 {sending ? "Sending…" : "Send message"}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

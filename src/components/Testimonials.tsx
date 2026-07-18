@@ -35,7 +35,7 @@ export default function Testimonials() {
             <blockquote className="font-display text-xl leading-snug tracking-tighter text-cream md:text-2xl">
               {t.quote}
             </blockquote>
-            <figcaption className="mt-auto flex items-baseline justify-between border-t border-line pt-5 font-mono text-[11px] uppercase tracking-tracked">
+            <figcaption className="mt-auto flex flex-col gap-1 border-t border-line pt-5 font-mono text-[11px] uppercase tracking-tracked sm:flex-row sm:items-baseline sm:justify-between">
               <span className="text-cream">{t.name}</span>
               <span className="text-ash">
                 {t.role} · {t.company}

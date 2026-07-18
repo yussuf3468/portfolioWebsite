@@ -87,11 +87,12 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={250} className="lg:col-span-5 lg:justify-self-end">
-            <div className="flex flex-col items-start gap-3 sm:flex-row lg:items-center">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <MagneticButton
                 variant="primary"
                 onClick={() => go("contact")}
                 aria-label="Start a project"
+                className="w-full justify-center sm:w-auto"
               >
                 Start a project
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -100,6 +101,7 @@ export default function Hero() {
                 variant="ghost"
                 onClick={() => go("work")}
                 aria-label="See selected work"
+                className="w-full justify-center sm:w-auto"
               >
                 Selected work
                 <ArrowDownRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:translate-y-0.5" />
@@ -114,7 +116,7 @@ export default function Hero() {
             {site.metrics.map((m) => (
               <div
                 key={m.label}
-                className="bg-ink-1 px-5 py-6 md:px-8 md:py-8"
+                className="bg-ink-1 px-4 py-5 md:px-8 md:py-8"
               >
                 <div className="font-display text-3xl tracking-tightest text-cream md:text-5xl">
                   {m.value}

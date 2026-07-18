@@ -31,13 +31,13 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "relative scroll-mt-24 py-24 md:py-32 lg:py-40",
+        "relative scroll-mt-24 py-20 md:py-32 lg:py-40",
         className
       )}
     >
       <Container>
         {divider && (
-          <div className="mb-16 md:mb-20 lg:mb-24">
+          <div className="mb-12 md:mb-20 lg:mb-24">
             <div className="hairline" />
             {(label || index || meta) && (
               <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
@@ -66,7 +66,7 @@ export function Section({
         {(title || subtitle) && (
           <header
             className={cn(
-              "mb-16 md:mb-20 lg:mb-24",
+              "mb-12 md:mb-20 lg:mb-24",
               full ? "" : "max-w-[1000px]"
             )}
           >

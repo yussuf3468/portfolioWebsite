@@ -2,7 +2,12 @@ import { useState, useMemo } from "react";
 import { ArrowUpRight, Github } from "lucide-react";
 import { Section } from "./ui/Section";
 import { Reveal } from "./ui/Reveal";
-import { work, workCategories, type WorkCategory } from "../data/work";
+import {
+  work,
+  workCategories,
+  workYearRange,
+  type WorkCategory,
+} from "../data/work";
 import { cn } from "../lib/cn";
 
 export default function Portfolio() {
@@ -14,12 +19,14 @@ export default function Portfolio() {
     [filter]
   );
 
+  const caseStudies = work.filter((w) => w.featured).slice(0, 3);
+
   return (
     <Section
       id="work"
       index="01"
       label="Selected Work"
-      meta={`${work.length} engagements · 2019 – 2025`}
+      meta={`${work.length} engagements · ${workYearRange}`}
       full
     >
       <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
@@ -45,6 +52,7 @@ export default function Portfolio() {
                 <button
                   key={c.id}
                   onClick={() => setFilter(c.id as WorkCategory | "all")}
+                  aria-pressed={filter === c.id}
                   className={cn(
                     "rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-tracked transition-colors",
                     filter === c.id
@@ -66,6 +74,7 @@ export default function Portfolio() {
               <button
                 key={c.id}
                 onClick={() => setFilter(c.id as WorkCategory | "all")}
+                aria-pressed={filter === c.id}
                 className={cn(
                   "rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-tracked transition-colors",
                   filter === c.id
@@ -81,6 +90,7 @@ export default function Portfolio() {
           <ul className="border-t border-line">
             {filtered.map((w) => {
               const isActive = active === w.index;
+              const href = w.liveUrl || w.repoUrl;
               return (
                 <li
                   key={w.index}
@@ -92,9 +102,12 @@ export default function Portfolio() {
                   onMouseLeave={() => setActive(null)}
                 >
                   <a
-                    href={w.liveUrl || w.repoUrl || "#"}
+                    href={href}
                     target={w.liveUrl ? "_blank" : undefined}
                     rel="noreferrer"
+                    aria-label={href ? `${w.title} — open project` : undefined}
+                    onFocus={() => setActive(w.index)}
+                    onBlur={() => setActive(null)}
                     className="grid grid-cols-12 items-center gap-4 py-7 md:py-9"
                     data-hover="true"
                   >
@@ -111,18 +124,27 @@ export default function Portfolio() {
                         <span className="h-3 w-px bg-line-strong" />
                         <span className="capitalize text-smoke">{w.category}</span>
                       </div>
+                      <div className="mt-3 flex flex-wrap gap-1.5 md:hidden">
+                        {w.stack.slice(0, 3).map((s) => (
+                          <span
+                            key={s}
+                            className="rounded-full border border-line px-2 py-0.5 font-mono text-[9px] uppercase tracking-tracked text-smoke"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
                     </div>
 
                     <div className="col-span-12 mt-3 flex items-center justify-between md:col-span-4 md:mt-0 md:justify-end">
-                      <span className="font-mono text-[11px] uppercase tracking-tracked text-smoke md:hidden">
+                      <span className="font-mono text-[11px] uppercase tracking-tracked text-smoke">
                         {w.year}
                       </span>
-                      <span className="hidden font-mono text-[11px] uppercase tracking-tracked text-smoke md:inline">
-                        {w.year}
-                      </span>
-                      <ArrowUpRight
-                        className="h-5 w-5 text-cream transition-transform duration-500 ease-editorial group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent md:ml-6"
-                      />
+                      {href && (
+                        <ArrowUpRight
+                          className="h-5 w-5 text-cream transition-transform duration-500 ease-editorial group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent md:ml-6"
+                        />
+                      )}
                     </div>
 
                     {/* Hover thumbnail — desktop only */}
@@ -185,74 +207,86 @@ export default function Portfolio() {
             })}
           </ul>
 
-          {/* Featured case-study highlight */}
-          <Reveal delay={200}>
-            <div className="mt-16 grid gap-10 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-7">
-                <div className="overflow-hidden rounded-2xl border border-line-strong">
-                  <img
-                    src={work[0].image}
-                    alt={work[0].title}
-                    className="aspect-[16/10] w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="lg:col-span-5">
-                <div className="font-mono text-[11px] uppercase tracking-tracked text-ash">
-                  Case study · 2025
-                </div>
-                <h3 className="mt-3 font-display text-3xl tracking-tighter text-cream md:text-4xl">
-                  {work[0].title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-smoke">
-                  {work[0].blurb}
-                </p>
-                {work[0].impact && (
-                  <div className="mt-6 border-l-2 border-accent pl-4 text-sm leading-relaxed text-cream/85">
-                    {work[0].impact}
+          {/* Featured case-study highlights */}
+          {caseStudies.map((cs, i) => (
+            <Reveal key={cs.index} delay={200}>
+              <div className="mt-16 grid gap-10 lg:mt-24 lg:grid-cols-12 lg:items-center lg:gap-12">
+                <div
+                  className={cn(
+                    "lg:col-span-7",
+                    i % 2 === 1 && "lg:order-2"
+                  )}
+                >
+                  <div className="overflow-hidden rounded-2xl border border-line-strong">
+                    <img
+                      src={cs.image}
+                      alt={cs.title}
+                      className="aspect-[16/10] w-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
-                )}
-                {work[0].highlights && (
-                  <ul className="mt-6 space-y-2">
-                    {work[0].highlights.slice(0, 4).map((h) => (
-                      <li
-                        key={h}
-                        className="flex gap-3 text-sm leading-relaxed text-smoke"
+                </div>
+                <div
+                  className={cn(
+                    "lg:col-span-5",
+                    i % 2 === 1 && "lg:order-1"
+                  )}
+                >
+                  <div className="font-mono text-[11px] uppercase tracking-tracked text-ash">
+                    Case study · {cs.year}
+                  </div>
+                  <h3 className="mt-3 font-display text-3xl tracking-tighter text-cream md:text-4xl">
+                    {cs.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-relaxed text-smoke">
+                    {cs.blurb}
+                  </p>
+                  {cs.impact && (
+                    <div className="mt-6 border-l-2 border-accent pl-4 text-sm leading-relaxed text-cream/85">
+                      {cs.impact}
+                    </div>
+                  )}
+                  {cs.highlights && (
+                    <ul className="mt-6 space-y-2">
+                      {cs.highlights.slice(0, 4).map((h) => (
+                        <li
+                          key={h}
+                          className="flex gap-3 text-sm leading-relaxed text-smoke"
+                        >
+                          <span className="mt-2 inline-block h-1 w-1 flex-none rounded-full bg-accent" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="mt-8 flex flex-wrap gap-4">
+                    {cs.liveUrl && (
+                      <a
+                        href={cs.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-tracked text-cream hover:text-accent"
                       >
-                        <span className="mt-2 inline-block h-1 w-1 flex-none rounded-full bg-accent" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  {work[0].liveUrl && (
-                    <a
-                      href={work[0].liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-tracked text-cream hover:text-accent"
-                    >
-                      Visit live
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                  )}
-                  {work[0].repoUrl && (
-                    <a
-                      href={work[0].repoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-tracked text-smoke hover:text-cream"
-                    >
-                      <Github className="h-4 w-4" />
-                      Source
-                    </a>
-                  )}
+                        Visit live
+                        <ArrowUpRight className="h-4 w-4" />
+                      </a>
+                    )}
+                    {cs.repoUrl && (
+                      <a
+                        href={cs.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-tracked text-smoke hover:text-cream"
+                      >
+                        <Github className="h-4 w-4" />
+                        Source
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
       </div>
     </Section>
