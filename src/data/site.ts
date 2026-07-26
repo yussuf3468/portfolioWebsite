@@ -15,7 +15,7 @@ export const site = {
   social: {
     github: "https://github.com/yussuf3468",
     linkedin: "https://www.linkedin.com/in/yussufmuse/",
-    twitter: "https://twitter.com/yussuf3468",
+    twitter: "https://twitter.com/yussufmuse0",
   },
   metrics: [
     { label: "Years engineering", value: "05" },
