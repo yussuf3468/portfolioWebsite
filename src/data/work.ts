@@ -84,12 +84,12 @@ export const work: Work[] = [
   },
   {
     index: "04",
-    title: "Hassan POS & Inventory",
+    title: "Retail ERP & POS System for Hassan Bookshop",
     year: "2025",
     role: "Product · Engineering",
     category: "product",
     blurb:
-      "An end-to-end retail operating system — POS, inventory, returns, financial reporting and an e-commerce storefront — packaged as a native Android app via Capacitor.",
+      "Designed and developed a complete ERP and POS platform for a retail bookstore in Eastleigh, Nairobi. The system manages point-of-sale transactions, inventory, customer records, returns, financial reporting, role-based access, and an online storefront, replacing manual spreadsheets and disconnected processes with a single integrated platform.",
     stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "Capacitor"],
     image:
       "https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -154,7 +154,7 @@ export const work: Work[] = [
     stack: ["React", "Node.js", "Express", "MongoDB"],
     image:
       "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    liveUrl: "https://travel-blog-nu-amber.vercel.app",
+    liveUrl: "https://odyssey.lenzro.com",
     repoUrl: "https://github.com/YussufMuse/odyssey-travel",
   },
   {
