@@ -68,6 +68,39 @@ export const work: Work[] = [
   },
   {
     index: "03",
+    title: "ISLII Barista School",
+    year: "2026",
+    role: "Product · Design · Engineering",
+    category: "platform",
+    blurb:
+      "Designed and developed the digital presence for ISLII Barista School, including a modern marketing website, Google Business Profile optimization, and a custom training management platform for managing students, issuing certificates, and verifying certificates online through secure QR codes.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "QR Code",
+      "PDF Generation",
+    ],
+    image: "/public/islii-barista.png", // Replace with a real screenshot later
+    liveUrl: "https://isliibarista.com",
+    impact:
+      "Digitized student records and certificate verification while establishing the school's online presence and improving credibility through automated certificate authentication.",
+    highlights: [
+      "Modern responsive marketing website",
+      "Google Business Profile optimization",
+      "Student records management",
+      "Automatic student number generation",
+      "Certificate generation",
+      "QR code certificate verification",
+      "Printable PDF certificates",
+      "Admin dashboard",
+    ],
+    featured: true,
+  },
+  {
+    index: "06",
     title: "LenzFitness",
     year: "2026",
     role: "Product · Engineering",
@@ -118,29 +151,6 @@ export const work: Work[] = [
     image:
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1600",
     liveUrl: "https://yussuf.lenzro.com",
-    featured: true,
-  },
-  {
-    index: "06",
-    title: "Hassan Muse BookShop",
-    year: "2024",
-    role: "Architecture · Engineering",
-    category: "platform",
-    blurb:
-      "Bilingual (English / Somali) inventory and sales platform with real-time analytics, role-based access and PWA offline mode for unreliable connectivity.",
-    stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "PWA"],
-    image:
-      "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    liveUrl: "https://book-store-nu-nine.vercel.app/",
-    repoUrl: "https://github.com/yussuf3468/bookStore",
-    impact:
-      "80% reduction in manual reporting work; real-time decisions and full staff accountability across two branches.",
-    highlights: [
-      "Real-time inventory with reorder alerts",
-      "Profit/loss analytics, staff activity audit",
-      "Row-level security and JWT auth",
-      "Bilingual UI for Somali-speaking staff",
-    ],
     featured: true,
   },
   {
