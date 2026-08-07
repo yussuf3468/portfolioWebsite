@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ]
+    { "source": "/contact", "destination": "/" },
+    { "source": "/work/:slug", "destination": "/" }
+  ],
+  "trailingSlash": false
 }

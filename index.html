@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href="https://www.yussufmuse.com/" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="https://yussuf.lenzro.com/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Fonts: discoverable in the initial HTML so the request starts immediately -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+
     <meta name="theme-color" content="#06060A" />
     <meta name="color-scheme" content="dark" />
     <meta name="author" content="Yussuf Muse" />
@@ -22,14 +32,16 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.yussufmuse.com/" />
+    <meta property="og:url" content="https://yussuf.lenzro.com/" />
     <meta property="og:site_name" content="Yussuf Muse" />
     <meta property="og:title" content="Yussuf Muse — Software & systems. Quiet by design." />
     <meta
       property="og:description"
       content="Software engineer and co-founder of Lenzro. Full-stack systems for retail, hospitality and education."
     />
-    <meta property="og:image" content="/profile.jpg" />
+    <meta property="og:image" content="https://yussuf.lenzro.com/profile.jpg" />
+    <meta property="og:image:alt" content="Yussuf Muse — software engineer and co-founder of Lenzro." />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +52,8 @@
       name="twitter:description"
       content="Software engineer and co-founder of Lenzro. Full-stack systems for retail, hospitality and education."
     />
-    <meta name="twitter:image" content="/profile.jpg" />
+    <meta name="twitter:image" content="https://yussuf.lenzro.com/profile.jpg" />
+    <meta name="twitter:image:alt" content="Yussuf Muse — software engineer and co-founder of Lenzro." />
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -48,8 +61,8 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Yussuf Muse",
-        "url": "https://www.yussufmuse.com/",
-        "image": "https://www.yussufmuse.com/profile.jpg",
+        "url": "https://yussuf.lenzro.com/",
+        "image": "https://yussuf.lenzro.com/profile.jpg",
         "jobTitle": "Software Engineer · Co-Founder, Lenzro",
         "worksFor": { "@type": "Organization", "name": "Lenzro" },
         "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" },
@@ -71,9 +84,6 @@
       gtag('config', 'G-V0EBTWVGY3');
     </script>
 
-    <!-- Font preconnects (actual @import is in index.css) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <div id="root"></div>

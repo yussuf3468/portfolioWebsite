@@ -17,6 +17,9 @@ export default function Educational() {
   const [filter, setFilter] = useState<Note["category"] | "all">("all");
   const visible = filter === "all" ? notes : notes.filter((n) => n.category === filter);
 
+  // Nothing published yet — better no section than an empty one.
+  if (!notes.length) return null;
+
   return (
     <Section
       id="notes"

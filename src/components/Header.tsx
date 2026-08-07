@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "../lib/cn";
 import { site } from "../data/site";
 
@@ -8,13 +8,13 @@ const nav = [
   { id: "profile", label: "Profile", index: "02" },
   { id: "capabilities", label: "Capabilities", index: "03" },
   { id: "lenzro", label: "Lenzro", index: "04" },
-  { id: "notes", label: "Notes", index: "05" },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -32,6 +32,12 @@ export default function Header() {
 
   const go = (id: string) => {
     setOpen(false);
+    // Sections only exist on the home route — from a case study, route there
+    // first and let ScrollToHash finish the job once they've mounted.
+    if (pathname !== "/") {
+      navigate(`/#${id}`);
+      return;
+    }
     requestAnimationFrame(() => {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -90,16 +96,18 @@ export default function Header() {
 
           {/* CTA + mobile toggle */}
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => go("contact")}
+            <a
+              href={site.calendar}
+              target="_blank"
+              rel="noreferrer"
               className="hidden items-center gap-2 rounded-full border border-line-strong px-4 py-2 font-mono text-[11px] uppercase tracking-tracked text-cream transition-colors hover:border-accent hover:text-accent md:inline-flex"
             >
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
               </span>
-              Get in touch
-            </button>
+              Book a call
+            </a>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
@@ -164,11 +172,20 @@ export default function Header() {
             </ul>
           </nav>
           <div className="flex flex-col gap-4">
+            <a
+              href={site.calendar}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setOpen(false)}
+              className="w-full rounded-full bg-accent py-4 text-center font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+            >
+              Book a 20-min call
+            </a>
             <button
               onClick={() => go("contact")}
-              className="w-full rounded-full bg-accent py-4 font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+              className="w-full rounded-full border border-line-strong py-4 font-mono text-[12px] uppercase tracking-tracked text-cream"
             >
-              Get in touch
+              Send a message
             </button>
             <p className="font-mono text-[10px] uppercase tracking-tracked text-ash">
               {site.email} · {site.location}

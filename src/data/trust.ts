@@ -8,6 +8,13 @@ export interface Testimony {
 export const trust: Testimony[] = [
   {
     quote:
+      "We came to Yussuf with paper records and no online presence. He delivered the website and the full training platform faster than we expected, and the certificate verification has changed how people see the school — anyone can scan a code and confirm a certificate is genuine. We have not worked with anyone like him.",
+    name: "Mahad",
+    role: "Manager",
+    company: "ISLII Barista School",
+  },
+  {
+    quote:
       "Yussuf rebuilt our retail operations from spreadsheets into a system the whole team trusts. The product moves at the pace of the business — not the other way around.",
     name: "Abdimalik Mohamed",
     role: "Chief Executive",
@@ -22,30 +29,9 @@ export const trust: Testimony[] = [
   },
   {
     quote:
-      "Strategic insight and technical depth in the same person is rare. He helped us scale operations without scaling the headcount.",
-    name: "Albert Johnson",
-    role: "Founder",
-    company: "StartUp Hub",
-  },
-  {
-    quote:
       "The marketing automation Yussuf built is still the backbone of our lead funnel two years on.",
     name: "Fatima Noor",
     role: "Marketing Director",
     company: "Taqwa Electronics",
-  },
-  {
-    quote:
-      "Few engineers can integrate as cleanly across legacy and modern systems. He delivered what three teams had stalled on.",
-    name: "Omar Ali",
-    role: "Chief Technology Officer",
-    company: "Tech Innovators",
-  },
-  {
-    quote:
-      "Quietly excellent. He shows up, listens, and the thing gets built — well.",
-    name: "Layla Ahmed",
-    role: "Product Manager",
-    company: "Future Vision",
   },
 ];

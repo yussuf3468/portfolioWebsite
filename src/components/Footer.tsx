@@ -8,7 +8,6 @@ const sitemap = [
   { id: "profile", label: "Profile" },
   { id: "capabilities", label: "Capabilities" },
   { id: "lenzro", label: "Studio" },
-  { id: "notes", label: "Field notes" },
   { id: "trust", label: "Testimonials" },
   { id: "trajectory", label: "Trajectory" },
   { id: "contact", label: "Contact" },

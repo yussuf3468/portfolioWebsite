@@ -41,7 +41,7 @@ export default function About() {
           <figure className="relative">
             <div className="overflow-hidden rounded-2xl border border-line-strong">
               <img
-                src="/myphoto1.jpg"
+                src="/myphoto1.webp"
                 alt={site.name}
                 className="aspect-[4/5] w-full object-cover grayscale transition-[filter] duration-700 ease-editorial hover:grayscale-0"
               />

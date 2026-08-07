@@ -20,7 +20,9 @@ import Contact from "./components/Contact";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import FloatingCta from "./components/FloatingCta";
+import WorkDetail from "./components/WorkDetail";
 import { Cursor } from "./components/ui/Cursor";
+import { useSeo } from "./lib/useSeo";
 
 function ScrollToContact() {
   const location = useLocation();
@@ -34,7 +36,29 @@ function ScrollToContact() {
   return null;
 }
 
+/** Anchor links arriving from another route (e.g. "/#work") land at the top
+ *  unless we scroll once the home sections have mounted. */
+function ScrollToHash() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.slice(1);
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [pathname, hash]);
+  return null;
+}
+
 function HomePage() {
+  useSeo({
+    title: "Yussuf Muse — Software Engineer · Co-Founder, Lenzro",
+    description:
+      "Yussuf Muse — software engineer and co-founder of Lenzro. Building full-stack systems for retail, hospitality and education across East Africa.",
+    path: "/",
+  });
+
   return (
     <>
       <Hero />
@@ -55,14 +79,22 @@ export default function App() {
   return (
     <Router>
       <div className="relative min-h-screen bg-ink text-cream font-sans antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:font-mono focus:text-[12px] focus:uppercase focus:tracking-tracked focus:text-ink-0"
+        >
+          Skip to content
+        </a>
         <Cursor />
         <Header />
         <FloatingCta />
         <ScrollToContact />
-        <main>
+        <ScrollToHash />
+        <main id="main">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<HomePage />} />
+            <Route path="/work/:slug" element={<WorkDetail />} />
           </Routes>
         </main>
         <Footer />

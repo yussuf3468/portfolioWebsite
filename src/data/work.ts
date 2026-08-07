@@ -7,6 +7,7 @@ export type WorkCategory =
 
 export interface Work {
   index: string;
+  slug: string;
   title: string;
   year: string;
   role: string;
@@ -19,11 +20,25 @@ export interface Work {
   impact?: string;
   highlights?: string[];
   featured?: boolean;
+  /** Company name as it appears in trust.ts — pulls that client's quote onto
+   *  the case study page. Keeps the testimonials in one place. */
+  client?: string;
 }
 
-export const work: Work[] = [
+// Display order is the source of truth. The catalogue number is derived from
+// position below, so it can never fall out of sequence when entries are moved.
+// The slug is derived from the title unless an entry sets a shorter one.
+type WorkEntry = Omit<Work, "index" | "slug"> & { slug?: string };
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+const entries: WorkEntry[] = [
   {
-    index: "01",
     title: "LenzroPOS",
     year: "2026",
     role: "Founder · Product · Engineering",
@@ -45,7 +60,6 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "02",
     title: "Lenzro CarHire",
     year: "2026",
     role: "Product · Engineering",
@@ -67,7 +81,6 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "03",
     title: "ISLII Barista School",
     year: "2026",
     role: "Product · Design · Engineering",
@@ -83,8 +96,9 @@ export const work: Work[] = [
       "QR Code",
       "PDF Generation",
     ],
-    image: "/public/islii-barista.png", // Replace with a real screenshot later
+    image: "/islii-barista.webp",
     liveUrl: "https://isliibarista.com",
+    client: "ISLII Barista School",
     impact:
       "Digitized student records and certificate verification while establishing the school's online presence and improving credibility through automated certificate authentication.",
     highlights: [
@@ -100,7 +114,6 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "06",
     title: "LenzFitness",
     year: "2026",
     role: "Product · Engineering",
@@ -116,8 +129,8 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "04",
     title: "Retail ERP & POS System for Hassan Bookshop",
+    slug: "hassan-bookshop-erp-pos",
     year: "2025",
     role: "Product · Engineering",
     category: "product",
@@ -140,21 +153,19 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "05",
     title: "Personal Portfolio",
     year: "2025",
     role: "Design · Engineering",
     category: "interface",
     blurb:
       "My personal portfolio — a curated showcase of work, thinking and craft. Built for performance and expression with fluid motion and a considered visual system.",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion"],
+    stack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
     image:
       "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1600",
     liveUrl: "https://yussuf.lenzro.com",
     featured: true,
   },
   {
-    index: "07",
     title: "Odyssey Travel",
     year: "2023",
     role: "Full-stack",
@@ -168,7 +179,6 @@ export const work: Work[] = [
     repoUrl: "https://github.com/YussufMuse/odyssey-travel",
   },
   {
-    index: "08",
     title: "Lenzro",
     year: "2023",
     role: "Co-founder · Frontend",
@@ -181,7 +191,6 @@ export const work: Work[] = [
     featured: true,
   },
   {
-    index: "09",
     title: "Afya Hospital Management",
     year: "2022",
     role: "Backend · Database",
@@ -194,7 +203,6 @@ export const work: Work[] = [
     repoUrl: "https://github.com/LenzroStudio/AfyaHospital",
   },
   {
-    index: "10",
     title: "Lenzro Growth Campaign",
     year: "2024",
     role: "Strategy · Creative",
@@ -206,6 +214,14 @@ export const work: Work[] = [
       "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1600",
   },
 ];
+
+export const work: Work[] = entries.map((entry, i) => ({
+  ...entry,
+  index: String(i + 1).padStart(2, "0"),
+  slug: entry.slug ?? slugify(entry.title),
+}));
+
+export const workBySlug = (slug: string) => work.find((w) => w.slug === slug);
 
 export const workYearRange = (() => {
   const years = work.map((w) => Number(w.year)).filter((y) => !Number.isNaN(y));

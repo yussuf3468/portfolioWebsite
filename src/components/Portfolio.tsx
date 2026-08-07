@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { ArrowUpRight, Github } from "lucide-react";
 import { Section } from "./ui/Section";
 import { Reveal } from "./ui/Reveal";
@@ -40,9 +41,9 @@ export default function Portfolio() {
           </Reveal>
           <Reveal delay={120}>
             <p className="mt-6 max-w-prose text-base leading-relaxed text-smoke">
-              A short list — production engagements I'm proud of. Hover for a
-              preview; open the case study to see the architecture and the
-              numbers.
+              A short list — production engagements I'm proud of. Open any one
+              of them for the full case study: the architecture, the decisions
+              and what changed for the business.
             </p>
           </Reveal>
 
@@ -90,7 +91,6 @@ export default function Portfolio() {
           <ul className="border-t border-line">
             {filtered.map((w) => {
               const isActive = active === w.index;
-              const href = w.liveUrl || w.repoUrl;
               return (
                 <li
                   key={w.index}
@@ -101,11 +101,9 @@ export default function Portfolio() {
                   onMouseEnter={() => setActive(w.index)}
                   onMouseLeave={() => setActive(null)}
                 >
-                  <a
-                    href={href}
-                    target={w.liveUrl ? "_blank" : undefined}
-                    rel="noreferrer"
-                    aria-label={href ? `${w.title} — open project` : undefined}
+                  <Link
+                    to={`/work/${w.slug}`}
+                    aria-label={`${w.title} — read the case study`}
                     onFocus={() => setActive(w.index)}
                     onBlur={() => setActive(null)}
                     className="grid grid-cols-12 items-center gap-4 py-7 md:py-9"
@@ -124,7 +122,10 @@ export default function Portfolio() {
                         <span className="h-3 w-px bg-line-strong" />
                         <span className="capitalize text-smoke">{w.category}</span>
                       </div>
-                      <div className="mt-3 flex flex-wrap gap-1.5 md:hidden">
+                      <p className="mt-3 line-clamp-3 max-w-prose text-sm leading-relaxed text-smoke lg:hidden">
+                        {w.blurb}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-1.5 lg:hidden">
                         {w.stack.slice(0, 3).map((s) => (
                           <span
                             key={s}
@@ -140,11 +141,7 @@ export default function Portfolio() {
                       <span className="font-mono text-[11px] uppercase tracking-tracked text-smoke">
                         {w.year}
                       </span>
-                      {href && (
-                        <ArrowUpRight
-                          className="h-5 w-5 text-cream transition-transform duration-500 ease-editorial group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent md:ml-6"
-                        />
-                      )}
+                      <ArrowUpRight className="h-5 w-5 text-cream transition-transform duration-500 ease-editorial group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent md:ml-6" />
                     </div>
 
                     {/* Hover thumbnail — desktop only */}
@@ -169,12 +166,12 @@ export default function Portfolio() {
                         <span>{w.year}</span>
                       </div>
                     </div>
-                  </a>
+                  </Link>
 
                   {/* Stack reveal under the row, desktop */}
                   <div
                     className={cn(
-                      "hidden overflow-hidden pl-[8.333%] transition-[grid-template-rows] duration-500 md:grid",
+                      "hidden overflow-hidden pl-[8.333%] transition-[grid-template-rows] duration-500 lg:grid",
                       isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     )}
                   >
@@ -217,14 +214,19 @@ export default function Portfolio() {
                     i % 2 === 1 && "lg:order-2"
                   )}
                 >
-                  <div className="overflow-hidden rounded-2xl border border-line-strong">
+                  <Link
+                    to={`/work/${cs.slug}`}
+                    tabIndex={-1}
+                    aria-hidden
+                    className="block overflow-hidden rounded-2xl border border-line-strong"
+                  >
                     <img
                       src={cs.image}
                       alt={cs.title}
-                      className="aspect-[16/10] w-full object-cover"
+                      className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-editorial hover:scale-[1.03]"
                       loading="lazy"
                     />
-                  </div>
+                  </Link>
                 </div>
                 <div
                   className={cn(
@@ -259,7 +261,14 @@ export default function Portfolio() {
                       ))}
                     </ul>
                   )}
-                  <div className="mt-8 flex flex-wrap gap-4">
+                  <div className="mt-8 flex flex-wrap items-center gap-4">
+                    <Link
+                      to={`/work/${cs.slug}`}
+                      className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+                    >
+                      Read the case study
+                      <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </Link>
                     {cs.liveUrl && (
                       <a
                         href={cs.liveUrl}

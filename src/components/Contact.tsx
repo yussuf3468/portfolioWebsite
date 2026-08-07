@@ -1,5 +1,5 @@
 import { useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ArrowUpRight } from "lucide-react";
@@ -18,6 +18,8 @@ const projectTypes = [
 
 export default function Contact() {
   const [sending, setSending] = useState(false);
+  // Honeypot — invisible to people, tempting to bots. Never sent upstream.
+  const [botField, setBotField] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -38,13 +40,24 @@ export default function Contact() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // A filled honeypot means a bot. Show the success state and drop it.
+    if (botField) {
+      toast.success("Message sent. I'll reply within 24 hours.");
+      return;
+    }
+
     setSending(true);
     try {
       await emailjs.send(
         "service_hxy53bk",
         "template_61fhsgn",
         { ...form },
-        "OOnn4jog3-e9lbKUw"
+        {
+          publicKey: "OOnn4jog3-e9lbKUw",
+          blockHeadless: true,
+          limitRate: { throttle: 5000 },
+        }
       );
       toast.success("Message sent. I'll reply within 24 hours.");
       setForm({
@@ -91,6 +104,11 @@ export default function Contact() {
               I take on a small number of engagements each year. If you have a
               problem worth a careful look — a system to replace, a product
               to scope, an interface to rebuild — I'd like to hear about it.
+            </p>
+            <p className="mt-4 max-w-prose text-base leading-relaxed text-smoke">
+              Most of that work is with retail, hospitality and education
+              businesses across East Africa — the ones running on spreadsheets
+              and three tools that don't talk to each other.
             </p>
           </Reveal>
 
@@ -176,6 +194,22 @@ export default function Contact() {
         {/* Form */}
         <Reveal delay={200} className="lg:col-span-7">
           <form onSubmit={submit} className="space-y-px overflow-hidden rounded-2xl border border-line">
+            <div
+              aria-hidden
+              className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden"
+            >
+              <label>
+                Website
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={botField}
+                  onChange={(e) => setBotField(e.target.value)}
+                />
+              </label>
+            </div>
             <Field
               label="Your name"
               required
