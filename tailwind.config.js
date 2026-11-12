@@ -88,7 +88,7 @@ export default {
       },
       maxWidth: {
         prose: "62ch",
-        editorial: "1280px",
+        editorial: "1680px",
       },
       transitionTimingFunction: {
         editorial: "cubic-bezier(0.22, 1, 0.36, 1)",

@@ -45,7 +45,7 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-8 font-display text-[clamp(2.5rem,4.6vw,4.25rem)] font-bold leading-[1.02] tracking-[-0.04em] text-cream text-balance md:mt-10">
+              <h1 className="mt-8 font-display text-[clamp(2.5rem,4.6vw,4.25rem)] 2xl:text-[clamp(4.25rem,4.2vw,5rem)] font-bold leading-[1.02] tracking-[-0.04em] text-cream text-balance md:mt-10">
                 Software &amp; systems<span className="text-brand">.</span>
                 <br />
                 <span className="display-italic">Quiet by design.</span>
@@ -53,7 +53,7 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-smoke md:mt-8 md:text-lg md:leading-relaxed">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-smoke md:mt-8 md:text-lg md:leading-relaxed 2xl:max-w-2xl 2xl:text-xl 2xl:leading-relaxed">
                 <span className="text-cream">{site.name}</span> — software
                 engineer and co-founder of{" "}
                 <a
@@ -95,7 +95,7 @@ export default function Hero() {
 
             {/* Metrics — quiet inline row, not boxes */}
             <Reveal delay={320}>
-              <dl className="mt-12 grid max-w-xl grid-cols-3 border-t border-line pt-6 md:mt-14">
+              <dl className="mt-12 grid max-w-xl grid-cols-3 border-t border-line pt-6 md:mt-14 2xl:max-w-2xl">
                 {site.metrics.map((m, i) => (
                   <div
                     key={m.label}
@@ -119,7 +119,7 @@ export default function Hero() {
 
           {/* ── Portrait ─────────────────────────────────────── */}
           <Reveal delay={200} className="lg:col-span-5">
-            <figure className="relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mr-0 lg:max-w-none">
+            <figure className="relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mr-0 lg:max-w-[28rem] 2xl:max-w-[33rem]">
               {/* soft brand glow */}
               <div
                 aria-hidden

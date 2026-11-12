@@ -68,7 +68,7 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="mt-8 space-y-6 text-base leading-relaxed text-smoke md:text-lg md:leading-relaxed">
+            <div className="mt-8 max-w-prose space-y-6 text-base leading-relaxed text-smoke md:text-lg md:leading-relaxed">
               <p>
                 I'm Yussuf — a software engineer working across product, platform
                 and data. My first line of code was Java in 2019; six years
