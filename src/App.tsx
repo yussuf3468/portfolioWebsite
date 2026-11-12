@@ -10,7 +10,7 @@ import {
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Lenzro from "./components/Lenzro";
+import Nidaam from "./components/Nidaam";
 import Services from "./components/Services";
 import Portfolio from "./components/Portfolio";
 import Educational from "./components/Educational";
@@ -53,9 +53,9 @@ function ScrollToHash() {
 
 function HomePage() {
   useSeo({
-    title: "Yussuf Muse — Software Engineer · Co-Founder, Lenzro",
+    title: "Yussuf Muse — Software Engineer · Co-Founder, Nidaam Solutions",
     description:
-      "Yussuf Muse — software engineer and co-founder of Lenzro. Building full-stack systems for retail, hospitality and education across East Africa.",
+      "Yussuf Muse — software engineer and co-founder of Nidaam Solutions. Building full-stack systems for retail, hospitality and education across East Africa.",
     path: "/",
   });
 
@@ -65,7 +65,7 @@ function HomePage() {
       <Portfolio />
       <About />
       <Services />
-      <Lenzro />
+      <Nidaam />
       <Educational />
       <Testimonials />
       <Timeline />
@@ -81,7 +81,7 @@ export default function App() {
       <div className="relative min-h-screen bg-ink text-cream font-sans antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-accent focus:px-5 focus:py-3 focus:font-mono focus:text-[12px] focus:uppercase focus:tracking-tracked focus:text-ink-0"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-brand focus:px-5 focus:py-3 focus:font-mono focus:text-[12px] focus:uppercase focus:tracking-tracked focus:text-brand-ink"
         >
           Skip to content
         </a>

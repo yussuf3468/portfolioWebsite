@@ -28,16 +28,16 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] flex-col justify-between pt-28 pb-10 md:pt-32"
+      className="relative isolate flex min-h-[100svh] flex-col justify-between overflow-x-clip pt-28 pb-10 md:pt-32"
     >
       {/* Ambient corner glow — single, restrained */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-accent/[0.06] blur-3xl"
+        className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full bg-brand/[0.10] blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-32 left-[-8%] h-[420px] w-[420px] rounded-full bg-signal-azure/[0.04] blur-3xl"
+        className="pointer-events-none absolute -bottom-32 left-[-8%] h-[420px] w-[420px] rounded-full bg-brand/[0.06] blur-3xl"
       />
 
       <Container className="relative z-10 flex flex-1 flex-col justify-center">
@@ -60,7 +60,7 @@ export default function Hero() {
         {/* Display */}
         <Reveal>
           <h1 className="font-display text-display-xl tracking-tightest text-cream">
-            Software &amp; systems<span className="text-accent">.</span>
+            Software &amp; systems<span className="text-brand">.</span>
             <br className="hidden md:block" />
             <span className="display-italic text-cream/95">Quiet by design.</span>
           </h1>
@@ -73,12 +73,12 @@ export default function Hero() {
               <span className="text-cream">{site.name}</span> — software
               engineer and co-founder of{" "}
               <a
-                href="https://lenzro.com"
+                href={site.company.url}
                 target="_blank"
                 rel="noreferrer"
                 className="text-accent link-underline"
               >
-                Lenzro
+                {site.company.name}
               </a>
               . I build full-stack systems for retail, hospitality and
               education across East Africa. Currently taking on a small number
@@ -139,7 +139,7 @@ export default function Hero() {
                 key={s}
                 className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-tracked text-smoke"
               >
-                <span className="h-1 w-1 rounded-full bg-accent/60" />
+                <span className="h-1 w-1 rounded-full bg-brand/70" />
                 {s}
               </span>
             ))}

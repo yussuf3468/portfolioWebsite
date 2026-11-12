@@ -7,24 +7,31 @@ export interface Milestone {
 
 export const trajectory: Milestone[] = [
   {
+    year: "2026",
+    title: "Business systems, not websites",
+    detail:
+      "Nidaam Solutions sharpens its focus on the systems businesses run on. NidaamPOS launches as the flagship SaaS.",
+    tag: "studio",
+  },
+  {
     year: "2025",
     title: "Shipping at scale, quietly",
     detail:
-      "Al Kalam Bookshop ships as a packaged Android app. Lenzro hits 50+ production engagements across East Africa.",
+      "Al Kalam Bookshop ships as a packaged Android app. Nidaam hits 50+ production engagements across East Africa.",
     tag: "studio",
   },
   {
     year: "2024",
-    title: "Lenzro grows beyond the founders",
+    title: "Nidaam grows beyond the founders",
     detail:
       "Built out the studio team and the operating playbook — design system, engagement model, internal tooling.",
     tag: "studio",
   },
   {
     year: "2023",
-    title: "Co-founded Lenzro",
+    title: "Co-founded Nidaam Solutions",
     detail:
-      "Co-founded Lenzro with a remit to bring serious technology craft to the businesses around us.",
+      "Co-founded Nidaam Solutions with a remit to bring serious technology craft to the businesses around us.",
     tag: "studio",
   },
   {

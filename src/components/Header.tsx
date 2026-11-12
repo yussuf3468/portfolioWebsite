@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { cn } from "../lib/cn";
 import { site } from "../data/site";
+import { ThemeToggle } from "./ui/ThemeToggle";
 
 const nav = [
   { id: "work", label: "Work", index: "01" },
   { id: "profile", label: "Profile", index: "02" },
   { id: "capabilities", label: "Capabilities", index: "03" },
-  { id: "lenzro", label: "Lenzro", index: "04" },
+  { id: "nidaam", label: "Nidaam", index: "04" },
 ];
 
 export default function Header() {
@@ -67,9 +68,9 @@ export default function Header() {
             className="group flex items-baseline gap-3"
             aria-label="Home"
           >
-            <span className="font-display text-[1.25rem] font-medium tracking-tightest text-cream">
+            <span className="font-display text-[1.25rem] font-bold tracking-tightest text-cream">
               {site.initials}
-              <span className="text-accent">.</span>
+              <span className="text-brand">.</span>
             </span>
             <span className="hidden font-mono text-[11px] uppercase tracking-tracked text-ash group-hover:text-cream md:inline">
               {site.role.split("·")[0].trim()}
@@ -103,11 +104,12 @@ export default function Header() {
               className="hidden items-center gap-2 rounded-full border border-line-strong px-4 py-2 font-mono text-[11px] uppercase tracking-tracked text-cream transition-colors hover:border-accent hover:text-accent md:inline-flex"
             >
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
               </span>
               Book a call
             </a>
+            <ThemeToggle />
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
@@ -177,7 +179,7 @@ export default function Header() {
               target="_blank"
               rel="noreferrer"
               onClick={() => setOpen(false)}
-              className="w-full rounded-full bg-accent py-4 text-center font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+              className="w-full rounded-full bg-brand py-4 text-center font-mono text-[12px] uppercase tracking-tracked text-brand-ink"
             >
               Book a 20-min call
             </a>

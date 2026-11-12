@@ -6,17 +6,62 @@
 @tailwind utilities;
 
 @layer base {
+  /* Nidaam Solutions palette — mirrors nidaam.co.ke.
+     Colours are bare RGB channels so Tailwind can apply alpha (see
+     tailwind.config.js). Light "paper" is the default; dark "ink" follows
+     the OS unless the visitor picks a theme (data-theme on <html>). */
   :root {
-    --bg: #06060a;
-    --bg-1: #0a0a0f;
-    --bg-2: #101016;
-    --bg-3: #16161e;
-    --line: rgba(255, 255, 255, 0.06);
-    --line-strong: rgba(255, 255, 255, 0.1);
-    --text: #f2f0ea;
-    --muted: #9a9aa5;
-    --ash: #5c5c68;
-    --accent: #d7ff3a;
+    color-scheme: light;
+    --ink: 244 242 238; /* #f4f2ee paper */
+    --ink-0: 251 250 248;
+    --ink-1: 255 255 255;
+    --ink-2: 237 235 231;
+    --ink-3: 229 226 221;
+    --ink-4: 219 216 210;
+    --line: rgba(17, 16, 14, 0.09);
+    --line-strong: rgba(17, 16, 14, 0.16);
+    --cream: 17 17 17; /* #111111 brand ink */
+    --smoke: 93 90 86;
+    --ash: 117 113 107;
+    --graphite: 165 161 155;
+    --accent: 0 104 168; /* #0068a8 brand-ink on paper */
+    --brand: 0 174 255; /* #00aeff */
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ink: 11 10 9; /* #0b0a09 */
+    --ink-0: 6 6 5;
+    --ink-1: 19 19 17;
+    --ink-2: 27 26 25;
+    --ink-3: 35 34 32;
+    --ink-4: 44 43 41;
+    --line: rgba(255, 255, 255, 0.07);
+    --line-strong: rgba(255, 255, 255, 0.13);
+    --cream: 246 245 244;
+    --smoke: 166 164 162;
+    --ash: 118 116 112;
+    --graphite: 70 68 65;
+    --accent: 0 174 255; /* #00aeff reads cleanly on ink */
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ink: 11 10 9;
+      --ink-0: 6 6 5;
+      --ink-1: 19 19 17;
+      --ink-2: 27 26 25;
+      --ink-3: 35 34 32;
+      --ink-4: 44 43 41;
+      --line: rgba(255, 255, 255, 0.07);
+      --line-strong: rgba(255, 255, 255, 0.13);
+      --cream: 246 245 244;
+      --smoke: 166 164 162;
+      --ash: 118 116 112;
+      --graphite: 70 68 65;
+      --accent: 0 174 255;
+    }
   }
 
   *,
@@ -28,23 +73,23 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
-    background: var(--bg);
+    background: rgb(var(--ink));
   }
 
   body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-feature-settings: "ss01", "ss02", "cv11";
+    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: rgb(var(--ink));
+    color: rgb(var(--cream));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   ::selection {
-    background: var(--accent);
-    color: #07070a;
+    background: rgb(var(--brand));
+    color: #111111;
   }
 
   /* Hide native cursor on devices that show our custom cursor */
@@ -73,10 +118,18 @@
     @apply font-mono text-eyebrow uppercase tracking-tracked text-smoke;
   }
 
+  /* Headings default to Manrope semibold, as on nidaam.co.ke. Explicit
+     font-weight utilities still win (utilities layer comes later). */
+  .font-display {
+    font-weight: 600;
+  }
+
+  /* The secondary line of a two-part headline: the brand has no serif, so
+     emphasis comes from weight contrast — a light Manrope against the bold. */
   .display-italic {
-    font-family: "Fraunces", Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
+    font-family: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-style: normal;
+    font-weight: 300;
   }
 
   .link-underline {
@@ -123,16 +176,16 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--line-strong);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.16);
+  background: rgb(var(--brand) / 0.6);
 }
 
 /* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid rgb(var(--accent));
   outline-offset: 3px;
   border-radius: 2px;
 }

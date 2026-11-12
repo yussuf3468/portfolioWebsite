@@ -266,7 +266,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={sending}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 font-mono text-[12px] uppercase tracking-tracked text-ink-0 transition-colors hover:bg-cream disabled:opacity-50 sm:py-3"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 font-mono text-[12px] uppercase tracking-tracked text-brand-ink transition-colors hover:bg-brand-bright disabled:opacity-50 sm:py-3"
               >
                 {sending ? "Sending…" : "Send message"}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

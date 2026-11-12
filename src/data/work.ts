@@ -23,6 +23,9 @@ export interface Work {
   /** Company name as it appears in trust.ts — pulls that client's quote onto
    *  the case study page. Keeps the testimonials in one place. */
   client?: string;
+  /** Former slugs from earlier project names. Old shared links redirect to
+   *  the current slug instead of 404ing. */
+  legacySlugs?: string[];
 }
 
 // Display order is the source of truth. The catalogue number is derived from
@@ -39,16 +42,17 @@ const slugify = (value: string) =>
 
 const entries: WorkEntry[] = [
   {
-    title: "LenzroPOS",
+    title: "NidaamPOS",
+    legacySlugs: ["lenzropos"],
     year: "2026",
     role: "Founder · Product · Engineering",
     category: "product",
     blurb:
-      "Lenzro's flagship SaaS — point-of-sale, inventory and an online storefront in one platform, built so any retail business can try the live demo and start selling the same day.",
+      "Nidaam Solutions' flagship SaaS — point-of-sale, inventory and an online storefront in one platform, built so any retail business can try the live demo and start selling the same day.",
     stack: ["React", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS"],
     image:
       "https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    liveUrl: "https://pos.lenzro.com",
+    liveUrl: "https://ecommerce.nidaam.co.ke",
     impact:
       "Productised years of bespoke retail builds into a single platform any business can onboard onto — no spreadsheets, no stitched-together tools.",
     highlights: [
@@ -60,7 +64,8 @@ const entries: WorkEntry[] = [
     featured: true,
   },
   {
-    title: "Lenzro CarHire",
+    title: "Nidaam CarHire",
+    legacySlugs: ["lenzro-carhire"],
     year: "2026",
     role: "Product · Engineering",
     category: "platform",
@@ -114,18 +119,19 @@ const entries: WorkEntry[] = [
     featured: true,
   },
   {
-    title: "LenzFitness",
+    title: "Nidaam Fitness",
+    legacySlugs: ["lenzfitness"],
     year: "2026",
     role: "Product · Engineering",
     category: "product",
     blurb:
-      "Fitness platform under the Lenzro umbrella — an outcome-first training experience built around one promise: become stronger. Clean interface, zero clutter between you and the work.",
+      "Fitness platform under the Nidaam Solutions umbrella — an outcome-first training experience built around one promise: become stronger. Clean interface, zero clutter between you and the work.",
     stack: ["React", "TypeScript", "Tailwind CSS"],
     image:
       "https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg?auto=compress&cs=tinysrgb&w=1600",
     liveUrl: "https://fitness.lenzro.com",
     impact:
-      "Lenzro's first consumer product — the same product discipline applied to retail systems, pointed at training and progression.",
+      "The company's first consumer product — the same product discipline applied to retail systems, pointed at training and progression.",
     featured: true,
   },
   {
@@ -179,15 +185,18 @@ const entries: WorkEntry[] = [
     repoUrl: "https://github.com/YussufMuse/odyssey-travel",
   },
   {
-    title: "Lenzro",
-    year: "2023",
-    role: "Co-founder · Frontend",
+    title: "Nidaam Solutions",
+    legacySlugs: ["lenzro"],
+    year: "2026",
+    role: "Co-founder · Brand · Frontend",
     category: "interface",
     blurb:
-      "Marketing site and visual system for Lenzro — the studio I co-founded. Quiet typography, restrained motion, the work in the foreground.",
+      "Marketing site and visual system for Nidaam Solutions — the software company I co-founded. One azure mark, one line of positioning: we don't sell websites, we build business systems.",
     stack: ["Next.js", "Tailwind CSS", "Vercel"],
-    image: "/lenzro1.jpg",
-    liveUrl: "https://lenzro.com",
+    image: "/nidaam-cover.svg",
+    liveUrl: "https://www.nidaam.co.ke",
+    impact:
+      "An identity and site that position the company around business systems rather than one-off websites — the brand this portfolio is built on.",
     featured: true,
   },
   {
@@ -203,12 +212,13 @@ const entries: WorkEntry[] = [
     repoUrl: "https://github.com/LenzroStudio/AfyaHospital",
   },
   {
-    title: "Lenzro Growth Campaign",
+    title: "Nidaam Growth Campaign",
+    legacySlugs: ["lenzro-growth-campaign"],
     year: "2024",
     role: "Strategy · Creative",
     category: "growth",
     blurb:
-      "End-to-end social growth campaign for a Lenzro client — creative direction, copy, scheduling and analytics reporting.",
+      "End-to-end social growth campaign for a Nidaam client — creative direction, copy, scheduling and analytics reporting.",
     stack: ["Meta Ads", "Canva", "Analytics"],
     image:
       "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -221,7 +231,9 @@ export const work: Work[] = entries.map((entry, i) => ({
   slug: entry.slug ?? slugify(entry.title),
 }));
 
-export const workBySlug = (slug: string) => work.find((w) => w.slug === slug);
+export const workBySlug = (slug: string) =>
+  work.find((w) => w.slug === slug) ??
+  work.find((w) => w.legacySlugs?.includes(slug));
 
 export const workYearRange = (() => {
   const years = work.map((w) => Number(w.year)).filter((y) => !Number.isNaN(y));

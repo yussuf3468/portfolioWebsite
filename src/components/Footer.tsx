@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "./ui/Container";
 import { site } from "../data/site";
+import { NidaamLogo } from "./ui/NidaamLogo";
 
 const sitemap = [
   { id: "work", label: "Selected work" },
   { id: "profile", label: "Profile" },
   { id: "capabilities", label: "Capabilities" },
-  { id: "lenzro", label: "Studio" },
+  { id: "nidaam", label: "Nidaam" },
   { id: "trust", label: "Testimonials" },
   { id: "trajectory", label: "Trajectory" },
   { id: "contact", label: "Contact" },
@@ -17,7 +18,7 @@ const elsewhere = [
   { href: site.social.github, label: "GitHub" },
   { href: site.social.linkedin, label: "LinkedIn" },
   { href: site.social.twitter, label: "Twitter" },
-  { href: "https://lenzro.com", label: "Lenzro" },
+  { href: site.company.url, label: site.company.name },
 ];
 
 export default function Footer() {
@@ -45,11 +46,23 @@ export default function Footer() {
         <div className="relative">
           <h2 className="font-display text-[clamp(4rem,18vw,18rem)] leading-[0.85] tracking-tightest text-cream/95">
             {site.name.split(" ")[0]}
-            <span className="text-accent">.</span>
+            <span className="text-brand">.</span>
           </h2>
-          <p className="mt-4 max-w-prose font-display text-2xl tracking-tighter text-cream md:text-3xl">
+          <p className="mt-4 max-w-prose font-display text-2xl font-medium tracking-tighter text-cream md:text-3xl">
             {site.tagline}
           </p>
+          <a
+            href={site.company.url}
+            target="_blank"
+            rel="noreferrer"
+            className="group mt-10 inline-flex items-center gap-4 text-cream"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-tracked text-ash transition-colors group-hover:text-accent">
+              Co-founder
+            </span>
+            <span className="h-3 w-px bg-line-strong" />
+            <NidaamLogo className="h-7 w-auto md:h-8" />
+          </a>
         </div>
 
         <div className="mt-20 grid grid-cols-2 gap-y-12 md:grid-cols-12">

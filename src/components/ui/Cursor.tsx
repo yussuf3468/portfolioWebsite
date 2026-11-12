@@ -67,19 +67,22 @@ export function Cursor() {
       <div
         ref={dot}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[100] h-1.5 w-1.5 rounded-full bg-cream mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[100] h-1.5 w-1.5 rounded-full bg-white mix-blend-difference"
         style={{ willChange: "transform" }}
       />
       <div
         ref={ring}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[99] h-9 w-9 rounded-full border border-cream/40 mix-blend-difference transition-[width,height,border-color] duration-300 ease-soft"
+        className="pointer-events-none fixed left-0 top-0 z-[99] h-9 w-9 rounded-full border transition-[width,height,border-color,background-color] duration-300 ease-soft"
         style={{
           willChange: "transform",
           transform: "translate3d(-100px,-100px,0)",
           width: hovering ? "56px" : "36px",
           height: hovering ? "56px" : "36px",
-          borderColor: hovering ? "#D7FF3A" : "rgba(242,240,234,0.4)",
+          borderColor: hovering
+            ? "rgb(var(--brand))"
+            : "rgb(var(--cream) / 0.3)",
+          backgroundColor: hovering ? "rgb(var(--brand) / 0.08)" : "transparent",
         }}
       />
     </>

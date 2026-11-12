@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import { Container } from "./ui/Container";
 import { Reveal } from "./ui/Reveal";
@@ -25,6 +25,11 @@ export default function WorkDetail() {
     image: project?.image.startsWith("/") ? project.image : undefined,
   });
 
+  // A former slug (see Work.legacySlugs) → redirect to the current one.
+  if (project && project.slug !== slug) {
+    return <Navigate to={`/work/${project.slug}`} replace />;
+  }
+
   if (!project) {
     return (
       <Container className="flex min-h-screen flex-col items-center justify-center gap-6 text-center">
@@ -36,7 +41,7 @@ export default function WorkDetail() {
         </p>
         <Link
           to="/#work"
-          className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+          className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-mono text-[12px] uppercase tracking-tracked text-brand-ink"
         >
           See all work
         </Link>
@@ -135,7 +140,7 @@ export default function WorkDetail() {
                         key={h}
                         className="flex gap-3 text-base leading-relaxed text-smoke"
                       >
-                        <span className="mt-2.5 inline-block h-1 w-1 flex-none rounded-full bg-accent" />
+                        <span className="mt-2.5 inline-block h-1 w-1 flex-none rounded-full bg-brand" />
                         <span>{h}</span>
                       </li>
                     ))}
@@ -168,7 +173,7 @@ export default function WorkDetail() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex items-center justify-between gap-3 rounded-full bg-accent px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+                    className="group flex items-center justify-between gap-3 rounded-full bg-brand px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-brand-ink"
                   >
                     Visit live site
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

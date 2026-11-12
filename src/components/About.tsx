@@ -78,19 +78,20 @@ export default function About() {
               <p>
                 In 2023 I co-founded{" "}
                 <a
-                  href="https://lenzro.com"
+                  href={site.company.url}
                   target="_blank"
                   rel="noreferrer"
                   className="text-cream link-underline"
                 >
-                  Lenzro
+                  {site.company.name}
                 </a>
-                , a small studio building serious software for businesses across
-                East Africa. The work spans retail point-of-sale, hospitality,
-                education and the marketing systems that hold them together.
+                , a software company building
+                serious systems for businesses across East Africa. The work
+                spans retail point-of-sale, hospitality, education and the
+                marketing systems that hold them together.
               </p>
               <p>
-                Outside the studio I write field notes on building for bilingual
+                Outside the company I write field notes on building for bilingual
                 users, mentor junior engineers on Java and SQL, and contribute
                 back to the open-source pieces that make this practice possible.
               </p>

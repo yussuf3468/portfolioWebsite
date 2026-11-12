@@ -10,7 +10,7 @@ type Variant = "primary" | "ghost" | "underline";
 
 const variants: Record<Variant, string> = {
   primary:
-    "group relative inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0 transition-colors hover:bg-bone",
+    "group relative inline-flex items-center gap-3 rounded-full bg-brand px-6 py-3 font-mono text-[12px] uppercase tracking-tracked text-brand-ink transition-colors hover:bg-brand-bright",
   ghost:
     "group relative inline-flex items-center gap-3 rounded-full border border-line-strong bg-transparent px-6 py-3 font-mono text-[12px] uppercase tracking-tracked text-cream transition-colors hover:border-cream hover:text-cream",
   underline:

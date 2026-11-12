@@ -57,7 +57,7 @@ export default function Portfolio() {
                   className={cn(
                     "rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-tracked transition-colors",
                     filter === c.id
-                      ? "border-accent bg-accent text-ink-0"
+                      ? "border-brand bg-brand text-brand-ink"
                       : "border-line-strong text-smoke hover:border-cream hover:text-cream"
                   )}
                 >
@@ -79,7 +79,7 @@ export default function Portfolio() {
                 className={cn(
                   "rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-tracked transition-colors",
                   filter === c.id
-                    ? "border-accent bg-accent text-ink-0"
+                    ? "border-brand bg-brand text-brand-ink"
                     : "border-line-strong text-smoke"
                 )}
               >
@@ -160,8 +160,8 @@ export default function Portfolio() {
                         className="h-full w-full object-cover"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink-0/80 via-transparent" />
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-tracked text-cream">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-tracked text-white">
                         <span>{w.stack[0]}</span>
                         <span>{w.year}</span>
                       </div>
@@ -255,7 +255,7 @@ export default function Portfolio() {
                           key={h}
                           className="flex gap-3 text-sm leading-relaxed text-smoke"
                         >
-                          <span className="mt-2 inline-block h-1 w-1 flex-none rounded-full bg-accent" />
+                          <span className="mt-2 inline-block h-1 w-1 flex-none rounded-full bg-brand" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -264,7 +264,7 @@ export default function Portfolio() {
                   <div className="mt-8 flex flex-wrap items-center gap-4">
                     <Link
                       to={`/work/${cs.slug}`}
-                      className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0"
+                      className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-brand-ink"
                     >
                       Read the case study
                       <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-editorial group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

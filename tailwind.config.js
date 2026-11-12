@@ -1,49 +1,63 @@
+/** Theme-aware colour: channels live in CSS variables (see src/index.css) so
+ *  the same utilities render Nidaam's light and dark palettes, and Tailwind's
+ *  `/alpha` modifiers keep working. */
+const themed = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
+        // Surfaces. `ink` is the page; 1 is a raised card; 2–4 step toward
+        // the foreground; 0 steps away from it.
         ink: {
-          DEFAULT: "#06060A",
-          0: "#030305",
-          1: "#0A0A0F",
-          2: "#101016",
-          3: "#16161E",
-          4: "#1D1D26",
+          DEFAULT: themed("ink"),
+          0: themed("ink-0"),
+          1: themed("ink-1"),
+          2: themed("ink-2"),
+          3: themed("ink-3"),
+          4: themed("ink-4"),
         },
         line: {
-          DEFAULT: "rgba(255,255,255,0.06)",
-          strong: "rgba(255,255,255,0.10)",
+          DEFAULT: "var(--line)",
+          strong: "var(--line-strong)",
         },
-        cream: "#F2F0EA",
-        bone: "#E8E6DF",
-        smoke: "#9A9AA5",
-        ash: "#5C5C68",
-        graphite: "#3A3A44",
-        accent: {
-          DEFAULT: "#D7FF3A",
-          dim: "#A9CC2E",
-          glow: "rgba(215,255,58,0.18)",
-        },
-        signal: {
-          coral: "#FF7849",
-          azure: "#7FBEFF",
+        // Foreground ramp: cream (primary text) → smoke → ash → graphite.
+        cream: themed("cream"),
+        smoke: themed("smoke"),
+        ash: themed("ash"),
+        graphite: themed("graphite"),
+        // Brand-ink: Nidaam azure tuned per theme so it stays legible as
+        // text, links and borders on both paper and ink.
+        accent: themed("accent"),
+        // Nidaam Solutions brand. Fixed across themes — azure fills always
+        // carry `brand-ink` text, as in the on-blue logo lockup.
+        brand: {
+          DEFAULT: "#00AEFF",
+          bright: "#4DC7FF",
+          deep: "#0068A8",
+          ink: "#111111",
         },
       },
       fontFamily: {
+        // Matches nidaam.co.ke: Manrope headings, Outfit body, JetBrains Mono.
         display: [
-          "Inter Display",
-          "Inter",
+          "Manrope",
           "-apple-system",
           "BlinkMacSystemFont",
+          "Segoe UI",
           "sans-serif",
         ],
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        serif: ["Fraunces", "Georgia", "serif"],
+        sans: [
+          "Outfit",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
         mono: [
           "JetBrains Mono",
-          "Geist Mono",
           "ui-monospace",
           "SFMono-Regular",
           "monospace",
@@ -51,16 +65,16 @@ export default {
       },
       fontSize: {
         "display-xl": [
-          "clamp(3.5rem, 10vw, 9rem)",
-          { lineHeight: "0.92", letterSpacing: "-0.04em", fontWeight: "500" },
+          "clamp(3.25rem, 9.5vw, 8.5rem)",
+          { lineHeight: "0.95", letterSpacing: "-0.045em", fontWeight: "700" },
         ],
         "display-lg": [
-          "clamp(2.75rem, 7vw, 6.5rem)",
-          { lineHeight: "0.96", letterSpacing: "-0.035em", fontWeight: "500" },
+          "clamp(2.5rem, 6.5vw, 6rem)",
+          { lineHeight: "0.98", letterSpacing: "-0.04em", fontWeight: "700" },
         ],
         "display-md": [
           "clamp(2rem, 4.5vw, 4rem)",
-          { lineHeight: "1.02", letterSpacing: "-0.03em", fontWeight: "500" },
+          { lineHeight: "1.04", letterSpacing: "-0.035em", fontWeight: "700" },
         ],
         eyebrow: [
           "0.72rem",

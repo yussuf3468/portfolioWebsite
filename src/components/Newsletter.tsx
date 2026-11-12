@@ -52,7 +52,7 @@ export default function Newsletter() {
                 type="submit"
                 disabled={done}
                 aria-label="Subscribe"
-                className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-full bg-accent text-ink-0 transition-colors hover:bg-cream disabled:opacity-60"
+                className="inline-flex h-12 w-12 flex-none items-center justify-center rounded-full bg-brand text-brand-ink transition-colors hover:bg-brand-bright disabled:opacity-60"
               >
                 {done ? (
                   <Check className="h-4 w-4" />

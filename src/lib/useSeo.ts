@@ -5,7 +5,7 @@ export const SITE_URL = "https://yussuf.lenzro.com";
 interface Seo {
   title: string;
   description: string;
-  /** Absolute path on this site, e.g. "/work/lenzropos". */
+  /** Absolute path on this site, e.g. "/work/nidaampos". */
   path: string;
   /** Absolute path to a social image; falls back to the site default. */
   image?: string;

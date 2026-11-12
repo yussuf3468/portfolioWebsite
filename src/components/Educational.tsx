@@ -52,7 +52,7 @@ export default function Educational() {
               className={cn(
                 "rounded-full border px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-tracked transition-colors",
                 filter === f.id
-                  ? "border-accent bg-accent text-ink-0"
+                  ? "border-brand bg-brand text-brand-ink"
                   : "border-line-strong text-smoke hover:border-cream hover:text-cream"
               )}
             >
@@ -121,7 +121,7 @@ export default function Educational() {
                 .getElementById("contact")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="inline-flex items-center gap-2 self-end rounded-full bg-cream px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink-0 transition-colors hover:bg-accent md:self-center"
+            className="inline-flex items-center gap-2 self-end rounded-full bg-cream px-5 py-3 font-mono text-[12px] uppercase tracking-tracked text-ink transition-colors hover:bg-brand hover:text-brand-ink md:self-center"
           >
             Book a session
             <ArrowUpRight className="h-4 w-4" />
