@@ -64,8 +64,8 @@ const entries: WorkEntry[] = [
     featured: true,
   },
   {
-    title: "Nidaam CarHire",
-    legacySlugs: ["lenzro-carhire"],
+    title: "Socdal",
+    legacySlugs: ["lenzro-carhire", "nidaam-carhire"],
     year: "2026",
     role: "Product · Engineering",
     category: "platform",
@@ -74,7 +74,7 @@ const entries: WorkEntry[] = [
     stack: ["Next.js", "React", "TypeScript", "PostgreSQL"],
     image:
       "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    liveUrl: "https://car-hire-two.vercel.app",
+    liveUrl: "https://socdal.nidaam.co.ke",
     impact:
       "Moves the rental desk off paper contracts and scattered records — bookings, billing statements and fleet status live in one place, reachable from a phone.",
     highlights: [
